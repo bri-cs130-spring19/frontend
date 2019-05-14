@@ -4,7 +4,7 @@ import {
     Geographies,
     Geography,
 } from "react-simple-maps"
-import geoData from "../res/us4.json"
+import geoData from "../res/us5.json"
 import {geoAlbersUsa} from "d3-geo";
 
 class Map extends Component {
