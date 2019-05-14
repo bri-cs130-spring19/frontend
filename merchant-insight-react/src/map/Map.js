@@ -1,13 +1,14 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 import {
     ComposableMap,
     Geographies,
     Geography,
-} from "react-simple-maps"
-import geoData from "../res/us5.json"
-import {geoAlbersUsa} from "d3-geo";
+} from "react-simple-maps";
+import { geoAlbersUsa } from "d3-geo";
+import geoData from "../res/us5.json";
+import '../styles/Map.css'
 
-class Map extends Component {
+export class Map extends React.Component {
 
     constructor() {
         super()
@@ -18,7 +19,7 @@ class Map extends Component {
     }
     render() {
         return(
-            <div>
+            <div className='Map'>
                 <ComposableMap
                     projection={geoAlbersUsa}
                     projectionConfig={{ scale: 100 }}
@@ -65,4 +66,3 @@ class Map extends Component {
 }
 
 
-export default Map;
