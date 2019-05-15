@@ -1,10 +1,10 @@
+.login-form-button {
+    height: 30px;
+}
 .ant-btn-link {
     color: #ffffff;
-    font-size: 2.2vw;
+    font-size: 2.0vw;
     font-family: "Times New Roman", Times, serif;
-}
-.ant-dropdown-button {
-    margin: 0.5vw;
 }
 
 .ant-dropdown-menu-item {
@@ -12,5 +12,5 @@
 }
 
 .ant-dropdown-menu {
-    margin-top: 3vw;
+    margin-top: 0.5vw;
 }

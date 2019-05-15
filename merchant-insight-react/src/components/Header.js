@@ -64,7 +64,7 @@ export class Header extends React.Component {
                 {
                     this.props.isLoggedIn ?
                         <DropdownButton className='App-dropdown' overlay={menu} icon={<Icon type="user" />} type='link' onClick={this.redirectToHome} >
-                            User Profile
+                            Profile
                         </DropdownButton>
                          : <DropdownButton className='App-dropdown' overlay={guestMenu} icon={<Icon type="menu"/>} type='link' onClick={this.redirectToHome} >
                             Home
