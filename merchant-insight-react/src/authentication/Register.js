@@ -5,6 +5,10 @@ import {
     Button,
 } from 'antd';
 import '../styles/Register.css'
+import { Link } from 'react-router-dom'
+
+const FormItem = Form.Item
+
 class RegistrationForm extends React.Component {
     state = {
         confirmDirty: false,
@@ -72,7 +76,7 @@ class RegistrationForm extends React.Component {
 
         return (
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className='register-form'>
-                <Form.Item label="E-mail">
+                <FormItem label="E-mail">
                     {getFieldDecorator('email', {
                         rules: [
                             {
@@ -85,8 +89,8 @@ class RegistrationForm extends React.Component {
                             },
                         ],
                     })(<Input />)}
-                </Form.Item>
-                <Form.Item label="Password" hasFeedback>
+                </FormItem>
+                <FormItem label="Password" hasFeedback>
                     {getFieldDecorator('password', {
                         rules: [
                             {
@@ -98,8 +102,8 @@ class RegistrationForm extends React.Component {
                             },
                         ],
                     })(<Input.Password />)}
-                </Form.Item>
-                <Form.Item label="Confirm Password" hasFeedback>
+                </FormItem>
+                <FormItem label="Confirm Password" hasFeedback>
                     {getFieldDecorator('confirm', {
                         rules: [
                             {
@@ -111,13 +115,14 @@ class RegistrationForm extends React.Component {
                             },
                         ],
                     })(<Input.Password onBlur={this.handleConfirmBlur} />)}
-                </Form.Item>
+                </FormItem>
 
-                <Form.Item {...tailFormItemLayout}>
+                <FormItem {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
                         Register
                     </Button>
-                </Form.Item>
+                    <p> Already have an account? <Link to='login'>Log in</Link> right now!</p>
+                </FormItem>
             </Form>
         );
     }
