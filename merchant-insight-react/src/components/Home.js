@@ -1,5 +1,4 @@
 import React from 'react';
-import Dropdown from 'react-bootstrap';
 
 export class Home extends React.Component {
     render() {
