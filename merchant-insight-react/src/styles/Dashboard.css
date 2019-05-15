@@ -1,0 +1,7 @@
+.test {
+    flex-wrap: wrap;
+}
+.state-text {
+    text-align: center;
+    justify-content: center;
+}

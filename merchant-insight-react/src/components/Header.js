@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../res/logo.svg';
+import logo from '../res/logo2.svg';
 import { Icon, Menu, Dropdown} from 'antd';
 import PropTypes from 'prop-types';
 
@@ -60,13 +60,13 @@ export class Header extends React.Component {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
 
-                <h1 className="App-title">  Merchant Insight</h1>
+                <h1 className="App-title">Merchant Insight</h1>
                 {
                     this.props.isLoggedIn ?
-                        <DropdownButton className='dropdown' overlay={menu} icon={<Icon type="user" />} type='link' onClick={this.redirectToHome} >
+                        <DropdownButton className='App-dropdown' overlay={menu} icon={<Icon type="user" />} type='link' onClick={this.redirectToHome} >
                             User Profile
                         </DropdownButton>
-                         : <DropdownButton className='dropdown' overlay={guestMenu} icon={<Icon type="menu"/>} type='link' onClick={this.redirectToHome} >
+                         : <DropdownButton className='App-dropdown' overlay={guestMenu} icon={<Icon type="menu"/>} type='link' onClick={this.redirectToHome} >
                             Home
                         </DropdownButton>
                 }

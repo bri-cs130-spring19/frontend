@@ -1,6 +1,6 @@
 import React from 'react'
 import { Map } from '../map/Map'
-
+import '../styles/Dashboard.css'
 
 export class Dashboard extends React.Component {
     state = {
@@ -17,12 +17,12 @@ export class Dashboard extends React.Component {
     }
 
 
-    render(data) {
+    render() {
         return (
             <div className='test'>
                 <Map handleUserInteraction={this.handleUserInteraction} handleOnClick={this.handleOnClick} />
                 {
-                    this.state.userClicked ? <p>{this.state.curState.id}</p> : null
+                    this.state.userClicked ? <p className="state-text">{this.state.curState.id}</p> : null
                 }
             </div>
         )

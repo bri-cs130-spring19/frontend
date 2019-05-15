@@ -1,14 +1,16 @@
-.logout {
-    padding-top: 20px;
-    padding-right: 20px;
-    float: right;
+.ant-btn-link {
+    color: #ffffff;
+    font-size: 2.2vw;
+    font-family: "Times New Roman", Times, serif;
+}
+.ant-dropdown-button {
+    margin: 0.5vw;
 }
 
-.dropdown{
-    padding-top: 20px;
-    padding-right: 20px;
-    float: right;
+.ant-dropdown-menu-item {
+    padding: 1vw 2vw;
 }
-.ant-btn-link {
-    color: #faad14;
+
+.ant-dropdown-menu {
+    margin-top: 3vw;
 }
