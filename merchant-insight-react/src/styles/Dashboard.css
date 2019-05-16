@@ -1,5 +1,8 @@
 .test {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
+}
+.Ling-Ling {
+    margin-left: auto;
 }

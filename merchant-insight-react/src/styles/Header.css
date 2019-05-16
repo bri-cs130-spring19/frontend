@@ -2,6 +2,7 @@
     height: 30px;
 }
 .ant-btn-link {
+    margin-right: 0.5vw;
     color: #ffffff;
     font-size: 2.0vw;
     font-family: "Times New Roman", Times, serif;

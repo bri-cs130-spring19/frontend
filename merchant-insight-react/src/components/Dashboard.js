@@ -1,5 +1,6 @@
 import React from 'react'
 import { Map } from '../map/Map'
+import { Comment, Avatar } from 'antd';
 import '../styles/Dashboard.css'
 
 export class Dashboard extends React.Component {
@@ -20,9 +21,21 @@ export class Dashboard extends React.Component {
     render() {
         return (
             <div className='test'>
-                <Map handleUserInteraction={this.handleUserInteraction} handleOnClick={this.handleOnClick} />
+                <Map handleUserInteraction={this.handleUserInteraction} handleOnClick={this.handleOnClick} className='DashboardMap' />
                 {
-                    this.state.userClicked ? <p className="state-text">{this.state.curState.id}</p> : null
+                    this.state.userClicked ?
+                        <Comment className="Ling-Ling"
+                            author={<a>Ling Ling</a>}
+                            avatar={
+                                <Avatar
+                                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                                    alt="Han Solo"
+                                />
+                            }
+                            content={'Your statistics for ' + this.state.curState.id + ' is here.'}
+
+                        />
+                        : null
                 }
             </div>
         )
