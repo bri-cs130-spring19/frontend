@@ -1,2 +1,2 @@
-const BACKEND_API = 'dummy value';
-const TOKEN_KEY = 'another dummy value';
+export const BACKEND_API = 'http://127.0.0.1:3000';
+export const TOKEN_KEY = 'another dummy value';

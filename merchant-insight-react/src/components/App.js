@@ -12,7 +12,8 @@ class App extends React.Component {
     }
 
     handleLogin = (response) => {
-        localStorage.setItem(TOKEN_KEY,response)
+        localStorage.setItem(TOKEN_KEY,response.data.token)
+        //console.log(localStorage.getItem(TOKEN_KEY))
         this.setState({ isLoggedIn: true })
     }
 

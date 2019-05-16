@@ -4,8 +4,12 @@ import {
     Input,
     Button,
 } from 'antd';
-import '../styles/Register.css'
-import { Link } from 'react-router-dom'
+import '../styles/Register.css';
+import { Link } from 'react-router-dom';
+import { BACKEND_API } from '../res/Constants'
+import { message } from 'antd'
+import axios from 'axios';
+import qs from 'qs'
 
 const FormItem = Form.Item
 
@@ -20,6 +24,23 @@ class RegistrationForm extends React.Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
+                const data = qs.stringify({
+                    username: values.email,
+                    password: values.password
+                });
+
+                const headers = {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                };
+
+               axios.post(BACKEND_API+ '/users/register', data, headers).then((response) => {
+                    message.success('Successfully created user.');
+                    this.props.history.push('/login');
+                }).catch((error) => {
+                   //TODO: fix the javascript error, maybe a lib issue
+                   console.log(error.response)
+                   message.error(error.response.data.error)
+                })
             }
         });
     };

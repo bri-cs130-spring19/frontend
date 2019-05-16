@@ -1,7 +1,10 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd/lib/index';
+import {Form, Icon, Input, Button, Checkbox, message} from 'antd/lib/index';
 import { Link } from 'react-router-dom'
 import '../styles/Login.css'
+import {BACKEND_API} from "../res/Constants"
+import qs from "qs"
+import axios from "axios"
 
 const FormItem = Form.Item;
 class NormalLoginForm extends React.Component {
@@ -11,7 +14,26 @@ class NormalLoginForm extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                this.props.handleLogin('test')
+                console.log('Received values of form: ', values);
+                const data = qs.stringify({
+                    username: values.username,
+                    password: values.password
+                });
+
+                const headers = {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                };
+
+                axios.post(BACKEND_API+ '/users/login', data, headers)
+                    .then((response) => {
+                        message.success("Successfully logged in.");
+                        this.props.handleLogin(response)
+                })
+                    .catch((error) => {
+                        //TODO: fix the javascript error, maybe a lib issue
+                        console.log(error.response)
+                        message.error(error.response.data.error)
+                })
             }
         });
     };
