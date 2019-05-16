@@ -1,8 +1,12 @@
 .test {
     display: flex;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    width: 100%;
+    text-align: left;
+}
+.dashboard {
+    width: 100%
 }
 .Ling-Ling {
-    margin-left: auto;
+    padding-left: 15px;
 }

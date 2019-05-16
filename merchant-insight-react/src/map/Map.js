@@ -4,17 +4,20 @@ import {
     ZoomableGroup,
     Geographies,
     Geography,
-    Markers,
-    Marker,
+
 } from "react-simple-maps"
+import chroma from 'chroma-js'
+import { scaleLinear } from "d3-scale"
 import geoData from "../res/us7.json";
 import '../styles/Map.css'
+
 
 
 const wrapperStyles = {
     width: "100%",
     maxWidth: 980,
     margin: "0 auto",
+    maxHeight: 600,
 }
 
 const include = [ 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California','Colorado', 'Connecticut', 'Delaware', 'District of Columbia',
@@ -24,12 +27,23 @@ const include = [ 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California','Colo
     'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
 ]
 
+const age = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
+
 // Note: The coordinates should be E/W, N/S, +/-
 const markers = [
     { markerOffset: 0,  name: "Los Angeles", coordinates: [-118, 34] },
     { markerOffset: 0,  name: "San Diego", coordinates: [-117.1611, 32.7157] },
     { markerOffset: 0,  name: "New York", coordinates: [-74.0060, 40.7128] },
 ]
+
+
+const popScale = scaleLinear()
+    .domain([1,26])
+    .range(["#FF0000","#0000FF"])
+
+const popScale2 = scaleLinear()
+    .domain([1,26])
+    .range(["#CFD8DC","#607D8B"])
 
 export class Map extends React.Component {
 
@@ -38,7 +52,10 @@ export class Map extends React.Component {
         this.state = {
             center: [0,20],
             zoom: 1,
+            populationData: false,
         }
+        this.switchToPopulation = this.switchToPopulation.bind(this)
+        this.switchToRegions = this.switchToRegions.bind(this)
     }
 
     handleUserClick = (data) => {
@@ -46,8 +63,21 @@ export class Map extends React.Component {
         this.props.handleOnClick(data);
     }
 
+    switchToPopulation() {
+        this.setState({ populationData: true })
+        console.log(this)
+    }
+
+    switchToRegions() {
+        this.setState({ populationData: false })
+    }
+
     render() {
         return (
+
+            <div>
+
+
             <div style={wrapperStyles}>
                 <ComposableMap
                     projectionConfig={{ scale: 900 }}
@@ -58,6 +88,7 @@ export class Map extends React.Component {
                         height: "auto",
                     }}
                 >
+
 
                 <ZoomableGroup center={[ -100, 40]} disablePanning>
                     <Geographies geography={geoData}>
@@ -70,19 +101,25 @@ export class Map extends React.Component {
                                         projection={projection}
                                         style={{
                                             default: {
-                                                fill: "#ECEFF1",
+                                                fill: this.state.populationData
+                                                    ? popScale(age[include.indexOf(geography.id)])
+                                                    : popScale2(age[include.indexOf(geography.id)]),
                                                 stroke: "#607D8B",
                                                 strokeWidth: 0.75,
                                                 outline: "none",
                                             },
                                             hover: {
-                                                fill: "#CFD8DC",
+                                                fill: this.state.populationData
+                                                    ? chroma(popScale(age[include.indexOf(geography.id)])).darken(0.5)
+                                                    : chroma(popScale2(age[include.indexOf(geography.id)])).darken(0.5),
                                                 stroke: "#607D8B",
                                                 strokeWidth: 0.75,
                                                 outline: "none",
                                             },
                                             pressed: {
-                                                fill: "#FF5722",
+                                                fill: this.state.populationData
+                                                    ? chroma(popScale(age[include.indexOf(geography.id)])).brighten(0.5)
+                                                    : chroma(popScale2(age[include.indexOf(geography.id)])).brighten(0.5),
                                                 stroke: "#607D8B",
                                                 strokeWidth: 0.75,
                                                 outline: "none",
@@ -93,56 +130,20 @@ export class Map extends React.Component {
                                 )
                             )
                         }
-                    </Geographies>
-                    <Markers>
-                        {markers.map((marker, i) => (
-                            <Marker
-                                key={i}
-                                marker={marker}
-                                style={{
-                                    default: { stroke: "#455A64" },
-                                    hover: { stroke: "#FF5722" },
-                                    pressed: { stroke: "#FF5722" },
-                                }}
-                            >
-                                <g transform="translate(-12, -24)">
-                                    <path
-                                        fill="none"
-                                        strokeWidth="2"
-                                        strokeLinecap="square"
-                                        strokeMiterlimit="10"
-                                        strokeLinejoin="miter"
-                                        d="M20,9c0,4.9-8,13-8,13S4,13.9,4,9c0-5.1,4.1-8,8-8S20,3.9,20,9z"
-                                    />
-                                    <circle
-                                        fill="none"
-                                        strokeWidth="2"
-                                        strokeLinecap="square"
-                                        strokeMiterlimit="10"
-                                        strokeLinejoin="miter"
-                                        cx="12"
-                                        cy="9"
-                                        r="3"
-                                    />
-                                </g>
-                                <text
-                                    textAnchor="middle"
-                                    y={marker.markerOffset}
-                                    style={{
-                                        fontFamily: "Roboto, sans-serif",
-                                        fill: "#607D8B",
-                                        stroke: "none",
-                                    }}
-                                >
-                                    {marker.name}
-                                </text>
-                            </Marker>
-                        ))}
-                    </Markers>
-                </ZoomableGroup>
-            </ComposableMap>
-        </div>
-    )
+                            </Geographies>
+                        </ZoomableGroup>
+                    </ComposableMap>
+                <div>
+                    <button onClick={ this.switchToPopulation }>
+                        { "Age data" }
+                    </button>
+                    <button onClick={ this.switchToRegions }>
+                        { "US subregions" }
+                    </button>
+                </div>
+                </div>
+            </div>
+        )
     }
 }
 

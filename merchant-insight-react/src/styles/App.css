@@ -8,6 +8,11 @@
     text-align: center;
 }
 
+.header-wrapper {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .App-logo {
     animation: App-logo-spin infinite 20s linear;
     height: 6vw;
@@ -32,16 +37,12 @@
 
 }
 
-.App-intro {
-    font-size: large;
-}
-
 .App-dropdown{
     margin-left: auto;
     margin-top: auto;
     margin-bottom: auto;
-
 }
+
 .mainPage {
     margin-top: 2vw;
 }

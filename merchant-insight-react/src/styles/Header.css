@@ -4,14 +4,18 @@
 .ant-btn-link {
     margin-right: 0.5vw;
     color: #ffffff;
-    font-size: 2.0vw;
+    font-size: 1.8vw;
     font-family: "Times New Roman", Times, serif;
 }
 
 .ant-dropdown-menu-item {
-    padding: 1vw 2vw;
+    padding: 0.8vw 2vw;
 }
 
 .ant-dropdown-menu {
     margin-top: 0.5vw;
 }
+.anticon {
+    vertical-align: 0.125em;
+}
+

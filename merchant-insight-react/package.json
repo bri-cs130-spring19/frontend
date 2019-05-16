@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.18.1",
     "bootstrap": "^4.3.1",
+    "chroma-js": "^2.0.3",
     "d3-geo": "^1.11.3",
     "jquery": "^3.4.1",
     "prop-types": "^15.7.2",
@@ -15,6 +16,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "react-simple-maps": "^0.12.1",
+    "recharts": "^1.6.0",
     "topojson-client": "^3.0.0",
     "typescript": "^3.4.5"
   },
