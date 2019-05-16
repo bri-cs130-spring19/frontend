@@ -1,4 +1,10 @@
 .Map {
     position: relative;
-    padding-top: 100px
+    padding-top: 100px;
 }
+
+.color-buttons {
+    display: flex;
+    justify-content: center;
+}
+

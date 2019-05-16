@@ -10,6 +10,7 @@ import chroma from 'chroma-js'
 import { scaleLinear } from "d3-scale"
 import geoData from "../res/us7.json";
 import '../styles/Map.css'
+import { Button } from 'react-bootstrap'
 
 
 
@@ -30,20 +31,15 @@ const include = [ 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California','Colo
 const age = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
 
 // Note: The coordinates should be E/W, N/S, +/-
-const markers = [
-    { markerOffset: 0,  name: "Los Angeles", coordinates: [-118, 34] },
-    { markerOffset: 0,  name: "San Diego", coordinates: [-117.1611, 32.7157] },
-    { markerOffset: 0,  name: "New York", coordinates: [-74.0060, 40.7128] },
-]
-
 
 const popScale = scaleLinear()
     .domain([1,26])
     .range(["#FF0000","#0000FF"])
 
 const popScale2 = scaleLinear()
-    .domain([1,26])
-    .range(["#CFD8DC","#607D8B"])
+        .domain([1,26])
+        .range(["#CFD8DC","#607D8B"])
+
 
 export class Map extends React.Component {
 
@@ -52,7 +48,7 @@ export class Map extends React.Component {
         this.state = {
             center: [0,20],
             zoom: 1,
-            populationData: false,
+            fakeData: false,
         }
         this.switchToPopulation = this.switchToPopulation.bind(this)
         this.switchToRegions = this.switchToRegions.bind(this)
@@ -64,20 +60,18 @@ export class Map extends React.Component {
     }
 
     switchToPopulation() {
-        this.setState({ populationData: true })
-        console.log(this)
+        this.setState({ fakeData: true })
     }
 
     switchToRegions() {
-        this.setState({ populationData: false })
+        this.setState({ fakeData: false })
     }
 
     render() {
+        console.log(this);
         return (
 
             <div>
-
-
             <div style={wrapperStyles}>
                 <ComposableMap
                     projectionConfig={{ scale: 900 }}
@@ -89,9 +83,8 @@ export class Map extends React.Component {
                     }}
                 >
 
-
                 <ZoomableGroup center={[ -100, 40]} disablePanning>
-                    <Geographies geography={geoData}>
+                    <Geographies geography={geoData} disableOptimization>
                         {(geographies, projection) =>
                             geographies.map((geography, i) =>
                                 include.indexOf(geography.id) !== -1 && (
@@ -101,7 +94,7 @@ export class Map extends React.Component {
                                         projection={projection}
                                         style={{
                                             default: {
-                                                fill: this.state.populationData
+                                                fill: this.state.fakeData
                                                     ? popScale(age[include.indexOf(geography.id)])
                                                     : popScale2(age[include.indexOf(geography.id)]),
                                                 stroke: "#607D8B",
@@ -109,7 +102,7 @@ export class Map extends React.Component {
                                                 outline: "none",
                                             },
                                             hover: {
-                                                fill: this.state.populationData
+                                                fill: this.state.fakeData
                                                     ? chroma(popScale(age[include.indexOf(geography.id)])).darken(0.5)
                                                     : chroma(popScale2(age[include.indexOf(geography.id)])).darken(0.5),
                                                 stroke: "#607D8B",
@@ -117,7 +110,7 @@ export class Map extends React.Component {
                                                 outline: "none",
                                             },
                                             pressed: {
-                                                fill: this.state.populationData
+                                                fill: this.state.fakeData
                                                     ? chroma(popScale(age[include.indexOf(geography.id)])).brighten(0.5)
                                                     : chroma(popScale2(age[include.indexOf(geography.id)])).brighten(0.5),
                                                 stroke: "#607D8B",
@@ -133,13 +126,13 @@ export class Map extends React.Component {
                             </Geographies>
                         </ZoomableGroup>
                     </ComposableMap>
-                <div>
-                    <button onClick={ this.switchToPopulation }>
+                <div className='color-buttons'>
+                    <Button  variant="light" onClick={ this.switchToPopulation }>
                         { "Age data" }
-                    </button>
-                    <button onClick={ this.switchToRegions }>
+                    </Button>
+                    <Button variant="light" onClick={ this.switchToRegions }>
                         { "US subregions" }
-                    </button>
+                    </Button>
                 </div>
                 </div>
             </div>

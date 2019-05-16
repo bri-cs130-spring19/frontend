@@ -16,15 +16,15 @@ export class Main extends React.Component {
     }
 
     getHome = () => {
-        return this.props.isLoggedIn ? <Home/> : <Welcome/>
+        return this.props.isLoggedIn ? <Dashboard/> : <Welcome/>
     }
 
     getRoot = () => {
         return <Redirect to='/login'/>
     }
 
-    getDashBoard = () => {
-        return this.props.isLoggedIn ? <Dashboard/> : <Welcome/>
+    getGeneral = () => {
+        return this.props.isLoggedIn ? <Home/> : <Welcome/>
     }
 
     render() {
@@ -35,7 +35,7 @@ export class Main extends React.Component {
                     <Route path='/register' component={Register}/>
                     <Route path='/login' render={this.getLogin}/>
                     <Route path='/home' render={this.getHome}/>
-                    <Route path='/dashboard' render={this.getDashBoard}/>
+                    <Route path='/general' render={this.getGeneral}/>
                     <Route render={this.getRoot}/>
                 </Switch>
             </div>

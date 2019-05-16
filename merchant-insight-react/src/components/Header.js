@@ -21,7 +21,7 @@ export class Header extends React.Component {
     }
 
     redirectToDashBoard = () => {
-        this.props.history.push('/dashboard')
+        this.props.history.push('/general')
         this.forceUpdate()
     }
 
@@ -43,7 +43,7 @@ export class Header extends React.Component {
             <Menu>
                 <Menu.Item key="1" onClick={this.redirectToDashBoard}>
                     <Icon type="user" />
-                    Dashboard
+                    General info
                 </Menu.Item>
                 <Menu.Item key="2" >
                     <Icon type="user" />
