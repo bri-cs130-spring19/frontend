@@ -10,7 +10,8 @@ import chroma from 'chroma-js'
 import { scaleLinear } from "d3-scale"
 import geoData from "../res/us7.json";
 import '../styles/Map.css'
-import { Button } from 'react-bootstrap'
+import { Button, Row, Col } from 'react-bootstrap'
+import ReactTooltip from 'react-tooltip'
 
 
 
@@ -54,6 +55,12 @@ export class Map extends React.Component {
         this.switchToRegions = this.switchToRegions.bind(this)
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            ReactTooltip.rebuild()
+        }, 100)
+    }
+
     handleUserClick = (data) => {
         this.props.handleUserInteraction();
         this.props.handleOnClick(data);
@@ -70,72 +77,81 @@ export class Map extends React.Component {
     render() {
         console.log(this);
         return (
+                <div>
+                <Row className='map-buttons'>
+                    <Col lg={12} md={12} sm={12} xs={12}>
+                    <div style={wrapperStyles}>
+                        <ComposableMap
+                            projectionConfig={{ scale: 900 }}
+                            width={1000}
+                            height={600}
+                            style={{
+                                width: "100%",
+                                height: "auto",
+                            }}
+                        >
 
-            <div>
-            <div style={wrapperStyles}>
-                <ComposableMap
-                    projectionConfig={{ scale: 900 }}
-                    width={1000}
-                    height={600}
-                    style={{
-                        width: "100%",
-                        height: "auto",
-                    }}
-                >
-
-                <ZoomableGroup center={[ -100, 40]} disablePanning>
-                    <Geographies geography={geoData} disableOptimization>
-                        {(geographies, projection) =>
-                            geographies.map((geography, i) =>
-                                include.indexOf(geography.id) !== -1 && (
-                                    <Geography
-                                        key={i}
-                                        geography={geography}
-                                        projection={projection}
-                                        style={{
-                                            default: {
-                                                fill: this.state.fakeData
-                                                    ? popScale(age[include.indexOf(geography.id)])
-                                                    : popScale2(age[include.indexOf(geography.id)]),
-                                                stroke: "#607D8B",
-                                                strokeWidth: 0.75,
-                                                outline: "none",
-                                            },
-                                            hover: {
-                                                fill: this.state.fakeData
-                                                    ? chroma(popScale(age[include.indexOf(geography.id)])).darken(0.5)
-                                                    : chroma(popScale2(age[include.indexOf(geography.id)])).darken(0.5),
-                                                stroke: "#607D8B",
-                                                strokeWidth: 0.75,
-                                                outline: "none",
-                                            },
-                                            pressed: {
-                                                fill: this.state.fakeData
-                                                    ? chroma(popScale(age[include.indexOf(geography.id)])).brighten(0.5)
-                                                    : chroma(popScale2(age[include.indexOf(geography.id)])).brighten(0.5),
-                                                stroke: "#607D8B",
-                                                strokeWidth: 0.75,
-                                                outline: "none",
-                                            },
-                                        }}
-                                        onClick={ this.handleUserClick.bind(geography) }
-                                    />
+                    <ZoomableGroup center={[ -100, 40]} disablePanning>
+                        <Geographies geography={geoData} disableOptimization>
+                            {(geographies, projection) =>
+                                geographies.map((geography, i) =>
+                                    include.indexOf(geography.id) !== -1 && (
+                                        <Geography
+                                            key={i}
+                                            geography={geography}
+                                            data-tip={geography.id + ': ' + age[include.indexOf(geography.id)]}
+                                            projection={projection}
+                                            style={{
+                                                default: {
+                                                    fill: this.state.fakeData
+                                                        ? popScale(age[include.indexOf(geography.id)])
+                                                        : popScale2(age[include.indexOf(geography.id)]),
+                                                    stroke: "#607D8B",
+                                                    strokeWidth: 0.75,
+                                                    outline: "none",
+                                                },
+                                                hover: {
+                                                    fill: this.state.fakeData
+                                                        ? chroma(popScale(age[include.indexOf(geography.id)])).darken(0.5)
+                                                        : chroma(popScale2(age[include.indexOf(geography.id)])).darken(0.5),
+                                                    stroke: "#607D8B",
+                                                    strokeWidth: 0.75,
+                                                    outline: "none",
+                                                },
+                                                pressed: {
+                                                    fill: this.state.fakeData
+                                                        ? chroma(popScale(age[include.indexOf(geography.id)])).brighten(0.5)
+                                                        : chroma(popScale2(age[include.indexOf(geography.id)])).brighten(0.5),
+                                                    stroke: "#607D8B",
+                                                    strokeWidth: 0.75,
+                                                    outline: "none",
+                                                },
+                                            }}
+                                            onClick={ this.handleUserClick.bind(geography) }
+                                        />
+                                    )
                                 )
-                            )
-                        }
-                            </Geographies>
-                        </ZoomableGroup>
-                    </ComposableMap>
-                <div className='color-buttons'>
-                    <Button  variant="light" onClick={ this.switchToPopulation }>
-                        { "Age data" }
-                    </Button>
-                    <Button variant="light" onClick={ this.switchToRegions }>
-                        { "US subregions" }
-                    </Button>
+                            }
+                                </Geographies>
+                            </ZoomableGroup>
+                        </ComposableMap>
+                        <ReactTooltip/>
+                        </div>
+                        </Col>
+
+                        <Col lg={12} md={12} sm={12} xs={12}>
+                        <div className='color-buttons'>
+                            <Button  variant="light" onClick={ this.switchToPopulation }>
+                                { "overall satisfaction" }
+                            </Button>
+                            <Button variant="light" onClick={ this.switchToRegions }>
+                                { "checkout experience" }
+                            </Button>
+                        </div>
+                        </Col>
+                    </Row>
                 </div>
-                </div>
-            </div>
+
         )
     }
 }

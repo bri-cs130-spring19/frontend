@@ -3,8 +3,11 @@
     padding-top: 100px;
 }
 
-.color-buttons {
+    .color-buttons {
+        display: flex;
+        justify-content: center;
+    }
+.map-button {
     display: flex;
-    justify-content: center;
+    justify-content: center
 }
-
