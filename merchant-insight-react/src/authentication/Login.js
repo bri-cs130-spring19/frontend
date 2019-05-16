@@ -46,11 +46,11 @@ class NormalLoginForm extends React.Component {
             <Form onSubmit={this.handleSubmit} className="login-form">
                 <FormItem>
                     {getFieldDecorator('username', {
-                        rules: [{ required: true, message: 'Please input your username!' }],
+                        rules: [{ required: true, message: 'Please input your email!' }],
                     })(
                         <Input
                             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder="Username"
+                            placeholder="Email"
                         />,
                     )}
                 </FormItem>
@@ -70,9 +70,6 @@ class NormalLoginForm extends React.Component {
                         valuePropName: 'checked',
                         initialValue: true,
                     })(<Checkbox>Remember me</Checkbox>)}
-                    <a className="login-form-forgot">
-                        Forgot password
-                    </a>
                     <Button type="primary" htmlType="submit" className="login-form-button">
                         Log in
                     </Button>

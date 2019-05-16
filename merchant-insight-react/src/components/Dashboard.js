@@ -122,7 +122,9 @@ export class Dashboard extends React.Component {
                                 <Tooltip/>
                             </PieChart>
                         </Col>
-                        : <Comment className="Ling-Ling"
+                        :
+                        <Col className="Ling-Ling" lg={4} md={10} sm={10} xs={10}>
+                        <Comment className="Ling-Ling"
                                    author={<a>Ling Ling</a>}
                                    avatar={
                                        <Avatar
@@ -133,6 +135,7 @@ export class Dashboard extends React.Component {
                                    content={'Click on any state to see more detailed information.'}
 
                         />
+                        </Col>
                 }
                 </Row>
             </div>
