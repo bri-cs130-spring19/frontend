@@ -5,7 +5,7 @@ import { Login } from '../authentication/Login';
 import { Register } from '../authentication/Register'
 import { Welcome } from './Welcome'
 import { Dashboard } from './Dashboard'
-
+import { GeneralGraph } from '../generalGraphs/GeneralGraph'
 import '../styles/Main.css'
 
 
@@ -16,7 +16,7 @@ export class Main extends React.Component {
     }
 
     getHome = () => {
-        return this.props.isLoggedIn ? <Dashboard/> : <Welcome/>
+        return <GeneralGraph/>
     }
 
     getRoot = () => {
