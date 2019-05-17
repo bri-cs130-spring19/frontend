@@ -1,0 +1,7 @@
+.home-page {
+    width: 100%;
+}
+.home-first-row {
+    display: flex;
+    justify-content: flex-start;
+}

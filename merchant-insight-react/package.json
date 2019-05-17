@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "acorn": "^6.0.0",
     "antd": "^3.18.1",
     "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
     "bootstrap": "^4.3.1",
     "chroma-js": "^2.0.3",
+    "create-react-app": "^3.0.1",
     "d3-geo": "^1.11.3",
     "jquery": "^3.4.1",
     "prop-types": "^15.7.2",
@@ -21,7 +24,8 @@
     "react-tooltip": "^3.10.0",
     "recharts": "^1.6.0",
     "topojson-client": "^3.0.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "webpack": "^4.4.0"
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
@@ -43,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "install-peers": "^1.0.3"
   }
 }

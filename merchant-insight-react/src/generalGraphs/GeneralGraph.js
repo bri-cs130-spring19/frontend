@@ -40,7 +40,7 @@ export class GeneralGraph extends React.Component {
       return (
           <div>
             {
-                this.state.data === undefined || this.state.data.length == 0
+                this.state.data === undefined || this.state.data.length === 0
                     ? <p>Loading</p>
                     :
                     <BarChart
