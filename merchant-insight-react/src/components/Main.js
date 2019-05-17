@@ -1,11 +1,10 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Home } from './Home';
+import { General} from './General';
 import { Login } from '../authentication/Login';
 import { Register } from '../authentication/Register'
 import { Welcome } from './Welcome'
-import { Dashboard } from './Dashboard'
-import { GeneralGraph } from '../generalGraphs/GeneralGraph'
+import { Dashboard} from "./Dashboard"
 import '../styles/Main.css'
 
 
@@ -15,8 +14,8 @@ export class Main extends React.Component {
         return this.props.isLoggedIn ? <Redirect to='/home'/> : <Login handleLogin={this.props.handleLogin} />
     }
 
-    getHome = () => {
-        return <GeneralGraph/>
+    getDashboard = () => {
+        return this.props.isLoggedIn ? <Dashboard/> : <Welcome/>
     }
 
     getRoot = () => {
@@ -24,17 +23,17 @@ export class Main extends React.Component {
     }
 
     getGeneral = () => {
-        return this.props.isLoggedIn ? <Home/> : <Welcome/>
+        return this.props.isLoggedIn ? <General/> : <Welcome/>
     }
 
     render() {
         return (
             <div className='mainPage'>
                 <Switch>
-                    <Route exact path='/' render={this.getHome}/>
+                    <Route exact path='/' render={this.getDashboard}/>
                     <Route path='/register' component={Register}/>
                     <Route path='/login' render={this.getLogin}/>
-                    <Route path='/home' render={this.getHome}/>
+                    <Route path='/home' render={this.getDashboard}/>
                     <Route path='/general' render={this.getGeneral}/>
                     <Route render={this.getRoot}/>
                 </Switch>

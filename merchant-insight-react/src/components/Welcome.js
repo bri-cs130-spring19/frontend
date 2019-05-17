@@ -3,7 +3,9 @@ import React from 'react';
 export class Welcome extends React.Component {
     render() {
         return (
-            <div>This is Welcome Page. A temporary placeholder.</div>
+            <div className='welcome-page'>
+            This is the welcome page for guest users. It is a placeholder.
+            </div>
         )
     }
 }
