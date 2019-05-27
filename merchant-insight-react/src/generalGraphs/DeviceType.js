@@ -6,7 +6,7 @@ import {
 import axios from 'axios';
 import { BACKEND_API, ETHNICITY, ETHNICITY_SHORT, DEVICE_TYPE } from '../res/Constants';
 
-export class GeneralGraph extends React.Component {
+export class DeviceType extends React.Component {
     constructor() {
         super();
         this.state = {
