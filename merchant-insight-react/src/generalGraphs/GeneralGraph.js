@@ -14,57 +14,25 @@ export class GeneralGraph extends React.Component {
                     <Col span={8}>
                         <Card
                             hoverable
-                            style={{ width: 240 }}
+                            
                             cover={<img alt="example" src={barImg} />}
                         >
-                            <Meta title="Ethnicity"/>
+                            <Meta title="Device Type"/>
                         </Card>
                     </Col>
                     <Col span={8}>
                         <Card
                             hoverable
-                            style={{ width: 240 }}
+                            
                             cover={<img alt="example" src={barImg} />}
                         >
-                            <Meta title="Ethnicity"/>
+                            <Meta title="Education"/>
                         </Card>
                     </Col>
                     <Col span={8}>
                         <Card
                             hoverable
-                            style={{ width: 240 }}
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Ethnicity"/>
-                        </Card>
-                    </Col>
-                </Row>
-                
-            </div>
-            <div style={{ background: '#ECECEC', padding: '30px' }}>
-                <Row gutter={16}>
-                    <Col span={8}>
-                        <Card
-                            hoverable
-                            style={{ width: 240 }}
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Ethnicity"/>
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card
-                            hoverable
-                            style={{ width: 240 }}
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Ethnicity"/>
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card
-                            hoverable
-                            style={{ width: 240 }}
+                            
                             cover={<img alt="example" src={barImg} />}
                         >
                             <Meta title="Ethnicity"/>
@@ -78,7 +46,7 @@ export class GeneralGraph extends React.Component {
                     <Col span={8}>
                         <Card
                             hoverable
-                            style={{ width: 240 }}
+                            
                             cover={<img alt="example" src={barImg} />}
                         >
                             <Meta title="Ethnicity"/>
@@ -87,7 +55,7 @@ export class GeneralGraph extends React.Component {
                     <Col span={8}>
                         <Card
                             hoverable
-                            style={{ width: 240 }}
+                            
                             cover={<img alt="example" src={barImg} />}
                         >
                             <Meta title="Ethnicity"/>
@@ -96,7 +64,39 @@ export class GeneralGraph extends React.Component {
                     <Col span={8}>
                         <Card
                             hoverable
-                            style={{ width: 240 }}
+                            
+                            cover={<img alt="example" src={barImg} />}
+                        >
+                            <Meta title="Ethnicity"/>
+                        </Card>
+                    </Col>
+                </Row>
+                
+            </div>
+            <div style={{ background: '#ECECEC', padding: '30px' }}>
+                <Row gutter={16}>
+                    <Col span={8}>
+                        <Card
+                            hoverable
+                            
+                            cover={<img alt="example" src={barImg} />}
+                        >
+                            <Meta title="Ethnicity"/>
+                        </Card>
+                    </Col>
+                    <Col span={8}>
+                        <Card
+                            hoverable
+                            
+                            cover={<img alt="example" src={barImg} />}
+                        >
+                            <Meta title="Ethnicity"/>
+                        </Card>
+                    </Col>
+                    <Col span={8}>
+                        <Card
+                            hoverable
+                            
                             cover={<img alt="example" src={barImg} />}
                         >
                             <Meta title="Ethnicity"/>
