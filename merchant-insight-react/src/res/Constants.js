@@ -21,3 +21,10 @@ export const ETHNICITY_SHORT = [
     'Other',
     'Not Disclosed',
 ];
+
+export const DEVICE_TYPE = [
+    'ANDROID',
+    'DESKTOP/LAPTOP',
+    'IPAD',
+    'IPHONE'
+];
