@@ -3,7 +3,6 @@ import logo from '../res/logo2.svg';
 import { Icon, Menu, Dropdown} from 'antd';
 import PropTypes from 'prop-types';
 
-
 const DropdownButton = Dropdown.Button;
 
 export class Header extends React.Component {
@@ -21,6 +20,10 @@ export class Header extends React.Component {
     }
 
     redirectToDashBoard = () => {
+        this.props.history.push('/dashboard')
+        this.forceUpdate()
+    }
+    redirectToGeneral = () => {
         this.props.history.push('/general')
         this.forceUpdate()
     }
@@ -41,15 +44,19 @@ export class Header extends React.Component {
 
         const menu = (
             <Menu>
-                <Menu.Item key="1" onClick={this.redirectToDashBoard}>
+                <Menu.Item key="1" onClick={this.redirectToGeneral}>
                     <Icon type="user" />
                     General info
                 </Menu.Item>
-                <Menu.Item key="2" >
+                <Menu.Item key="2" onClick={this.redirectToDashBoard}>
+                    <Icon type="user" />
+                    Dashboard
+                </Menu.Item>
+                <Menu.Item key="3" >
                     <Icon type="user" />
                     Need Help?
                 </Menu.Item>
-                <Menu.Item key="3" onClick={this.props.handleLogOut}>
+                <Menu.Item key="4" onClick={this.props.handleLogOut}>
                     <Icon type="user"/>
                     Log out
                 </Menu.Item>
