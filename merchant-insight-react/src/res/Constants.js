@@ -21,3 +21,13 @@ export const ETHNICITY_SHORT = [
     'Other',
     'Not Disclosed',
 ];
+<<<<<<< Updated upstream
+=======
+
+export const DEVICE_TYPE = [
+    'ANDROID',
+    'DESKTOP/LAPTOP',
+    'IPAD',
+    'IPHONE'
+];
+>>>>>>> Stashed changes
