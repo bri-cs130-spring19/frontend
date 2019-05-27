@@ -82,3 +82,13 @@ export const US_STATES = [
       "Wisconsin",
       "Wyoming"
     ];
+
+export const EDUCATION = [
+    'Less than high school',
+    'High school graduate',
+    'Some college',
+    'Bachelor\'s degree',
+    'Graduate degree',
+    
+];
+
