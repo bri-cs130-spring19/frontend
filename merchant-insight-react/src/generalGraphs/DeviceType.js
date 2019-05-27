@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Label,
 } from 'recharts';
 import axios from 'axios';
-import { BACKEND_API, ETHNICITY, ETHNICITY_SHORT, DEVICE_TYPE } from '../res/Constants';
+import { BACKEND_API, DEVICE_TYPE } from '../res/Constants';
 
 export class DeviceType extends React.Component {
     constructor() {
