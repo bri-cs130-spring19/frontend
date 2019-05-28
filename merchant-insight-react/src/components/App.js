@@ -37,6 +37,7 @@ class App extends React.Component {
           />{" "}
         </Col>{" "}
         <Main
+          history={this.props.history}
           isLoggedIn={this.state.isLoggedIn}
           handleLogin={this.handleLogin}
         />{" "}

@@ -7,8 +7,15 @@ import { Welcome } from "./Welcome";
 import { Dashboard } from "./Dashboard";
 
 import "../styles/Main.css";
+import { DeviceType } from "../generalGraphs/DeviceType";
+
+
+
 
 export class Main extends React.Component {
+  constructor() {
+    super();
+  }
   getLogin = () => {
     return this.props.isLoggedIn ? (
       <Redirect to="/home" />
@@ -26,7 +33,7 @@ export class Main extends React.Component {
   };
 
   getGeneral = () => {
-    return this.props.isLoggedIn ? <Home /> : <Welcome />;
+    return this.props.isLoggedIn ? <Home history={this.props.history} /> : <Welcome />;
   };
 
   render() {
@@ -38,6 +45,9 @@ export class Main extends React.Component {
           <Route path="/login" render={this.getLogin} />
           <Route path="/home" render={this.getHome} />
           <Route path="/general" render={this.getGeneral} />
+
+          <Route path="/devicetype" component={DeviceType} />
+        
           <Route render={this.getRoot} />
         </Switch>
       </div>
