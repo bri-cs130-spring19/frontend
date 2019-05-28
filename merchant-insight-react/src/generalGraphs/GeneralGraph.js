@@ -3,114 +3,88 @@ import { Card, Col, Row } from 'antd';
 import barImg from './images/bar1.png';
 import pieImg from './images/pie1.png';
 
+
+
+
 const {Meta} = Card;
 
 export class GeneralGraph extends React.Component {
+    constructor() {
+        super();
+    }
+   
+    getCard = (category) => {
+        return (
+            <Card
+                hoverable
+                            
+                cover={<img alt="example" src={barImg} />}
+            >
+                <Meta title={category}/>
+            </Card>
+        );
+    };
+    state = {
+        redirect: false
+    }
+      
+    redirectToDeviceType = () => {
+        this.props.history.push('/devicetype')
+    }
+   
     render() {
       return (
+        
         <div>
             <div style={{ background: '#ECECEC', padding: '30px' }}>
                 <Row gutter={16}>
                     <Col span={8}>
-                        <Card
-                            hoverable
-                            
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Device Type"/>
-                        </Card>
+                        <div onClick={this.redirectToDeviceType}>
+                            {this.getCard('Device Type')}
+                        </div>
+                    </Col>
+
+                    <Col span={8}>
+                    {this.getCard('Education')}
                     </Col>
                     <Col span={8}>
-                        <Card
-                            hoverable
-                            
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Education"/>
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card
-                            hoverable
-                            
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Ethnicity"/>
-                        </Card>
+                        {this.getCard('Ethnicity')}
                     </Col>
                 </Row>
-                
             </div>
             <div style={{ background: '#ECECEC', padding: '30px' }}>
                 <Row gutter={16}>
                     <Col span={8}>
-                        <Card
-                            hoverable
-                            
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Ethnicity"/>
-                        </Card>
+                        {this.getCard('Gender')}
+                    </Col>
+
+                    <Col span={8}>
+                    {this.getCard('HouseholdIncome')}
                     </Col>
                     <Col span={8}>
-                        <Card
-                            hoverable
-                            
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Ethnicity"/>
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card
-                            hoverable
-                            
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Ethnicity"/>
-                        </Card>
+                        {this.getCard('LikelyRecommend')}
                     </Col>
                 </Row>
-                
             </div>
             <div style={{ background: '#ECECEC', padding: '30px' }}>
                 <Row gutter={16}>
                     <Col span={8}>
-                        <Card
-                            hoverable
-                            
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Ethnicity"/>
-                        </Card>
+                        {this.getCard('LikelyBuy')}
+                    </Col>
+
+                    <Col span={8}>
+                    {this.getCard('OverallStatis')}
                     </Col>
                     <Col span={8}>
-                        <Card
-                            hoverable
-                            
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Ethnicity"/>
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card
-                            hoverable
-                            
-                            cover={<img alt="example" src={barImg} />}
-                        >
-                            <Meta title="Ethnicity"/>
-                        </Card>
+                        {this.getCard('PerchaceAmount')}
                     </Col>
                 </Row>
-                
             </div>
-            
-            
-           
+
         </div>
         
         );
     }
 }
+export default withRouter (DeviceType);
   
