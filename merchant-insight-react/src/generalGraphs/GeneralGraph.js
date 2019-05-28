@@ -86,5 +86,5 @@ export class GeneralGraph extends React.Component {
         );
     }
 }
-export default withRouter (DeviceType);
+
   

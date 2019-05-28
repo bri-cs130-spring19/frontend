@@ -34,9 +34,6 @@ export class DeviceType extends React.Component {
             })
 
     }
-    componentWillMount() {
-        console.log(this)
-    }
 
     render() {
       return (
