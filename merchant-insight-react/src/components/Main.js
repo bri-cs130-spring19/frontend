@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Home } from "./Home";
+import { Gender } from "../generalGraphs/Gender";
 import { Login } from "../authentication/Login";
 import { Register } from "../authentication/Register";
 import { Welcome } from "./Welcome";

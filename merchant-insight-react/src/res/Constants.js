@@ -92,3 +92,7 @@ export const EDUCATION = [
     
 ];
 
+export const GENDER = [
+    'Female',
+    'Male'
+];
