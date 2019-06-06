@@ -12,9 +12,10 @@ export class DeviceType extends React.Component {
         this.state = {
             data: undefined,
         }
+        console.log("device type class constructor")
     }
 
-    componentDidMount() {
+    componentDidMount() {        
         const urls = DEVICE_TYPE.map( e => BACKEND_API+'/data/device_type?device_type='+e)
         const promises = urls.map( url => axios.get(url))
         let result = []

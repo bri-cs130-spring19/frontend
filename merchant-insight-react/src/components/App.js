@@ -30,6 +30,7 @@ class App extends React.Component {
         this.setState({
             isLoggedIn: false
         });
+        this.props.history.push('/');
     };
 
     render() {
