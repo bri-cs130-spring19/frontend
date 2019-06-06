@@ -33,6 +33,12 @@ export class NavBar extends React.Component {
         this.forceUpdate()
     }
 
+    redirectToWhatsNew = () => {
+        this.props.history.push('/whatsnew')
+        this.forceUpdate()
+
+    }
+
     componentDidMount() {
         this.siderOrDrawer();
         window.addEventListener("resize", this.siderOrDrawer.bind(this));
@@ -73,7 +79,7 @@ export class NavBar extends React.Component {
                     <Sider collapsible={true} collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                         <div className="logo"/>
                         <Menu theme="dark" mode="inline">
-                            <Item key="1">
+                            <Item key="1" onClick={this.redirectToWhatsNew}>
                                 <Icon type="pie-chart"/>
                                 <span>What's New</span>
                             </Item>
@@ -97,7 +103,7 @@ export class NavBar extends React.Component {
                     <Drawer title="Menu" placement="left" closable={false}
                             onClose={this.onClose} visible={this.state.visible}>
                         <Menu theme="light" mode="inline">
-                            <Item key="1">
+                            <Item key="1" onClick={this.redirectToWhatsNew}>
                                 <Icon type="pie-chart"/>
                                 <span>What's New</span>
                             </Item>

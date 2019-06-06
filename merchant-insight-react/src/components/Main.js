@@ -6,6 +6,7 @@ import { Login } from "../authentication/Login";
 import { Register } from "../authentication/Register";
 import { Welcome } from "./Welcome";
 import { Dashboard } from "./Dashboard";
+import { WhatsNew } from "./WhatsNew";
 
 import "../styles/Main.css";
 import { DeviceType } from "../generalGraphs/DeviceType";
@@ -37,6 +38,11 @@ export class Main extends React.Component {
     return this.props.isLoggedIn ? <Home history={this.props.history} /> : <Welcome />;
   };
 
+  getWhatsNew = () => {
+    //return <Redirect to="/whatsnew"/>;
+    return this.props.isLoggedIn ? <WhatsNew /> : <Welcome/>;
+  }
+
   render() {
     return (
       <div className="mainPage">
@@ -46,6 +52,7 @@ export class Main extends React.Component {
           <Route path="/login" render={this.getLogin} />
           <Route path="/home" render={this.getHome} />
           <Route path="/general" render={this.getGeneral} />
+          <Route path="/whatsnew" render={this.getWhatsNew} /> 
           <Route path="/devicetype" component={DeviceType} />  {/*TODO: To Masa, fix this */}
           <Route render={this.getRoot} />
         </Switch>

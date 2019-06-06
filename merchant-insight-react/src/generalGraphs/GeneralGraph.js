@@ -59,24 +59,24 @@ export class GeneralGraph extends React.Component {
                     </Col>
 
                     <Col span={8}>
-                    {this.getCard('HouseholdIncome')}
+                    {this.getCard('Household Income')}
                     </Col>
                     <Col span={8}>
-                        {this.getCard('LikelyRecommend')}
+                        {this.getCard('Likely to Recommend')}
                     </Col>
                 </Row>
             </div>
             <div style={{ background: '#ECECEC', padding: '30px' }}>
                 <Row gutter={16}>
                     <Col span={8}>
-                        {this.getCard('LikelyBuy')}
+                        {this.getCard('Likely to Buy')}
                     </Col>
 
                     <Col span={8}>
-                    {this.getCard('OverallStatis')}
+                    {this.getCard('Overall Statisfaction')}
                     </Col>
                     <Col span={8}>
-                        {this.getCard('PerchaceAmount')}
+                        {this.getCard('Purchace Amount')}
                     </Col>
                 </Row>
             </div>
