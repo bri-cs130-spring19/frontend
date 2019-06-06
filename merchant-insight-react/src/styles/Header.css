@@ -18,4 +18,20 @@
 .anticon {
     vertical-align: 0.125em;
 }
-
+.header{
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.5em;
+    padding: 0 1em;
+}
+.logout  {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.login {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}

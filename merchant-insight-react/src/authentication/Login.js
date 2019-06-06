@@ -31,6 +31,7 @@ class NormalLoginForm extends React.Component {
                 })
                     .catch((error) => {
                         //TODO: fix the javascript error, maybe a lib issue
+                        console.log(error)
                         console.log(error.response)
                         message.error(error.response.data.error)
                 })

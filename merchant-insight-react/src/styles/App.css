@@ -5,7 +5,16 @@
 @import 'Header.css';
 
 .App {
-    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-weight: normal;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .header-wrapper {
@@ -20,20 +29,11 @@
 }
 
 .App-header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    background-color: #222;
-    height: 6vw;
-    color: white;
+
 }
 
 .App-title {
-    font-size: 3vw;
-    padding-top: 1vw;
-    padding-left: 0.5vw;
-    color: #ffffff;
-    font-family: "Times New Roman", Times, serif;
+
 
 }
 
@@ -45,6 +45,14 @@
 
 .mainPage {
     margin-top: 2vw;
+}
+
+#components-layout-demo-top-side-2 .logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px 28px 16px 0;
+    float: left;
 }
 
 

@@ -77,7 +77,7 @@ export class Sidebar extends React.Component {
           }
         />
         <LineChart
-          width={400}
+          width={300}
           height={200}
           data={fakeSatisfactionTrend}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -95,7 +95,7 @@ export class Sidebar extends React.Component {
           />
         </LineChart>
         <Assistant text={"The gender distribution is :"} />
-        <PieChart width={400} height={200}>
+        <PieChart width={300} height={200}>
           <Pie
             data={fakeGenderData}
             cx={200}

@@ -1,11 +1,11 @@
 import React from 'react';
-import logo from '../res/logo2.svg';
-import { Icon, Menu, Dropdown} from 'antd';
+import { Layout, Icon} from 'antd';
 import PropTypes from 'prop-types';
 
-const DropdownButton = Dropdown.Button;
 
-export class Header extends React.Component {
+const { Header } = Layout;
+
+export class AppHeader extends React.Component {
     static propTypes = {
         isLoggedIn : PropTypes.bool.isRequired,
         handleLogOut: PropTypes.func.isRequired,
@@ -15,69 +15,27 @@ export class Header extends React.Component {
         this.props.history.push('/login')
     }
 
-    redirectToHome = () => {
-        this.props.history.push('/home')
-    }
-
-    redirectToDashBoard = () => {
-        this.props.history.push('/dashboard')
-        this.forceUpdate()
-    }
-    redirectToGeneral = () => {
-        this.props.history.push('/general')
-        this.forceUpdate()
-    }
 
     render() {
-        const guestMenu = (
-            <Menu>
-                <Menu.Item key="1" onClick={this.redirectToLogin}>
-                    <Icon type="user" />
-                    Log in or Register
-                </Menu.Item>
-                <Menu.Item key="3">
-                    <Icon type="user" />
-                    Contact us
-                </Menu.Item>
-            </Menu>
-        );
-
-        const menu = (
-            <Menu>
-                <Menu.Item key="1" onClick={this.redirectToGeneral}>
-                    <Icon type="user" />
-                    General info
-                </Menu.Item>
-                <Menu.Item key="2" onClick={this.redirectToDashBoard}>
-                    <Icon type="user" />
-                    Dashboard
-                </Menu.Item>
-                <Menu.Item key="3" >
-                    <Icon type="user" />
-                    Need Help?
-                </Menu.Item>
-                <Menu.Item key="4" onClick={this.props.handleLogOut}>
-                    <Icon type="user"/>
-                    Log out
-                </Menu.Item>
-            </Menu>
-        );
-
         return (
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-
-                <h1 className="App-title">Merchant Insight</h1>
+            <Header className="header">Merchant Insight
                 {
                     this.props.isLoggedIn ?
-                        <DropdownButton className='App-dropdown' overlay={menu} icon={<Icon type="user" />} type='link' onClick={this.redirectToHome} >
-                            Profile
-                        </DropdownButton>
-                         : <DropdownButton className='App-dropdown' overlay={guestMenu} icon={<Icon type="menu"/>} type='link' onClick={this.redirectToHome} >
-                            Home
-                        </DropdownButton>
+                        <a className="logout"
+                           onClick={this.props.handleLogOut}
+                        >
+                            <Icon type="logout" />
+                        </a>
+                        :
+                        <a className="login"
+                                   onClick={this.redirectToLogin}
+                        >
+                            <Icon type="user" />
+                        </a>
+
+
                 }
-            </header>
+            </Header>
         );
     }
 }

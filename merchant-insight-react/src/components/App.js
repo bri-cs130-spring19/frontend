@@ -1,47 +1,57 @@
 import React from "react";
-import { Main } from "./Main";
-import { Header } from "./Header";
-import { TOKEN_KEY } from "../res/Constants";
-import { withRouter } from "react-router";
-import { Col } from "react-bootstrap";
+import {Main} from "./Main";
+import { AppHeader } from "./Header"
+import {TOKEN_KEY} from "../res/Constants";
+import {withRouter} from "react-router";
+import {NavBar} from './NavBar';
+import { Layout } from 'antd';
 import "../styles/App.css";
 
+
 class App extends React.Component {
-  state = {
-    isLoggedIn: !!localStorage.getItem(TOKEN_KEY)
-  };
+    state = {
+        isLoggedIn: !!localStorage.getItem(TOKEN_KEY)
+    };
 
-  handleLogin = response => {
-    localStorage.setItem(TOKEN_KEY, response.data.token);
-    //console.log(localStorage.getItem(TOKEN_KEY))
-    this.setState({
-      isLoggedIn: true
-    });
-  };
 
-  handleLogOut = () => {
-    localStorage.removeItem(TOKEN_KEY);
-    this.setState({
-      isLoggedIn: false
-    });
-  };
+    componentDidMount() {
+        console.log(window.innerHeight)
+    }
 
-  render() {
-    return (
-      <div className="App">
-        <Col lg={12} md={12} sm={12} xs={12} className="header-wrapper">
-          <Header
-            history={this.props.history}
-            isLoggedIn={this.state.isLoggedIn}
-            handleLogOut={this.handleLogOut}
-          />{" "}
-        </Col>{" "}
-        <Main
-          isLoggedIn={this.state.isLoggedIn}
-          handleLogin={this.handleLogin}
-        />{" "}
-      </div>
-    );
-  }
+    handleLogin = response => {
+        localStorage.setItem(TOKEN_KEY, response.data.token);
+        this.setState({
+            isLoggedIn: true
+        });
+    };
+
+    handleLogOut = () => {
+        localStorage.removeItem(TOKEN_KEY);
+        this.setState({
+            isLoggedIn: false
+        });
+    };
+
+    render() {
+        return (
+            <div className="App" style={{ minHeight: "100vh" }}>
+                <Layout>
+                    <AppHeader history={this.props.history} isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut} />
+                    <Layout style={{minHeight:"100vh"}}>
+                        {
+                            this.state.isLoggedIn ?
+                                <NavBar history={this.props.history} isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut}/>
+                                : null
+                        }
+
+                        <Layout>
+                            <Main history={this.props.history} isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin}/>
+                        </Layout>
+                    </Layout>
+                </Layout>,
+            </div>
+        );
+    }
 }
+
 export default withRouter(App);

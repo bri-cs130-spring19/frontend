@@ -22,7 +22,7 @@ export class Dashboard extends React.Component {
     return (
       <div className="dashboard">
         <Row className="test">
-          <Col lg={8} md={12} sm={12} xs={12}>
+          <Col lg={8} md={10} sm={10} xs={10}>
             <Map handleOnClick={this.handleOnClick} className="DashboardMap" />
           </Col>
           {this.state.curState !== undefined ? (
