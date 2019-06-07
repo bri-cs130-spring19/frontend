@@ -94,6 +94,17 @@ export class Gender extends React.Component {
     
 
     render() {
+        //console.log(this.state.data)
+        // var minOption = "";
+        // if (this.state.data != undefined) {
+        //     var min = 100000000;
+        //     for (var i in this.state.data) {
+        //         if (this.state.data[i].result < min) {
+        //             min = this.state.data[i].result;
+        //             minOption = this.state.data[i].ethnicity;
+        //         }
+        //     }
+        // }
       return (
           <div className="gender">
             <Row>
