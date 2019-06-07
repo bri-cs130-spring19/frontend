@@ -39,7 +39,6 @@ export class Main extends React.Component {
   };
 
   getWhatsNew = () => {
-    //return <Redirect to="/whatsnew"/>;
     return this.props.isLoggedIn ? <WhatsNew /> : <Welcome/>;
   }
 
