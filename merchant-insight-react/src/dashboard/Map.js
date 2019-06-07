@@ -43,7 +43,7 @@ export class Map extends React.Component {
     this.state = {
       center: [0, 20],
       zoom: 1,
-      isSatiafaction: false,
+      isSatisfaction: false,
       data: undefined,
     };
     this.switchToPopulation = this.switchToPopulation.bind(this);

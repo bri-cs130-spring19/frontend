@@ -13,24 +13,9 @@ import {
   Legend
 } from "recharts";
 import PropTypes from "prop-types";
-import {BACKEND_API, US_STATES, US_STATES_STATE_CODES} from "../res/Constants";
-import axios from "axios";
 import {Col, Row} from "react-bootstrap";
 import {Spin} from "antd";
 
-const fakeGenderData = [
-  { name: "female", value: 600 },
-  { name: "male", value: 412 }
-];
-
-const fakeSatisfactionTrend = [
-  { name: "Nov", satisfaction: 9.2, amt: 9.2 },
-  { name: "Dec", satisfaction: 9.2, amt: 9.2 },
-  { name: "Jan", satisfaction: 9.0, amt: 9.0 },
-  { name: "Feb", satisfaction: 8.7, amt: 8.7 },
-  { name: "Mar", satisfaction: 8.8, amt: 8.8 },
-  { name: "Apr", satisfaction: 8.5, amt: 8.5 }
-];
 
 const COLORS = ["#0088FE", "#FF8042"];
 
@@ -65,36 +50,10 @@ export class Sidebar extends React.Component {
     constructor() {
         super();
         this.state = {
-            isSatisfaction: false,
             data: undefined,
         };
     }
 
-    componentDidMount() {
-        // const urls = [US_STATES_STATE_CODES[US_STATES.indexOf(this.props.curState.id)]].map( e => BACKEND_API+'/data/states/'+e+'?startMonth=11&startYear=2018&endMonth=4&endYear=2019');
-        // const promises = urls.map( url => axios.get(url));
-        // let result = [];
-        // axios.all(promises)
-        //     .then((responses) => {
-        //         for (let i = 0; i < 1; i++) {
-        //             var female = {};
-        //             var male = {};
-        //             var months = [];
-        //             female.name = "female";
-        //             male.name = "male";
-        //             female.value = responses[i].data.numberFemales;
-        //             male.value = responses[i].data.numberMales;
-        //             months = responses[i].data.averageOverallSatisfactionByMonth;
-        //             result.push([female, male, months]);
-
-        //         }
-        //         this.setState({data: result});
-
-        //     })
-        //     .catch((error) => {
-        //         console.log(error)
-        //     })
-    }
 
   static propTypes = {
     curState: PropTypes.object.isRequired
