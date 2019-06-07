@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Home } from "./Home";
-import { Gender } from "../generalGraphs/Gender";
 import { Login } from "../authentication/Login";
 import { Register } from "../authentication/Register";
 import { Welcome } from "./Welcome";
@@ -10,6 +9,17 @@ import { WhatsNew } from "./WhatsNew";
 
 import "../styles/Main.css";
 import { DeviceType } from "../generalGraphs/DeviceType";
+import { Education } from "../generalGraphs/Education";
+import { Ethnicity } from "../generalGraphs/Ethnicity"
+import { Gender } from "../generalGraphs/Gender"
+import { HouseholdIncome } from "../generalGraphs/HouseholdIncome"
+import { LikelyBuy } from "../generalGraphs/LikelyBuy"
+import { LikeRecommend } from "../generalGraphs/LikeRecommend"
+import { OverallSatis } from "../generalGraphs/OverallSatis"
+import { PerchaseAmount } from "../generalGraphs/PerchaseAmount"
+
+
+
 
 
 
@@ -42,6 +52,36 @@ export class Main extends React.Component {
     return this.props.isLoggedIn ? <WhatsNew /> : <Welcome/>;
   }
 
+  getDeviceType = () => {
+    return this.props.isLoggedIn ? <DeviceType /> : <Welcome/>;
+  }
+  getEducation = () => {
+    return this.props.isLoggedIn ? <Education /> : <Welcome/>;
+  }
+  getEthnicity = () => {
+    return this.props.isLoggedIn ? <Ethnicity /> : <Welcome/>;
+  }
+  getGender = () => {
+    return this.props.isLoggedIn ? <Gender /> : <Welcome/>;
+  }
+  getHouseholdIncome = () => {
+    return this.props.isLoggedIn ? <HouseholdIncome /> : <Welcome/>;
+  }
+  getLikelyBuy = () => {
+    return this.props.isLoggedIn ? <LikelyBuy /> : <Welcome/>;
+  }
+  getLikelyRecommend = () => {
+    return this.props.isLoggedIn ? <LikeRecommend /> : <Welcome/>;
+  }
+  getOverallSatis = () => {
+    return this.props.isLoggedIn ? <OverallSatis /> : <Welcome/>;
+  }
+  getPurchaseAmount = () => {
+    return this.props.isLoggedIn ? <PerchaseAmount /> : <Welcome/>;
+  }
+
+
+
   render() {
     return (
       <div className="mainPage">
@@ -52,7 +92,17 @@ export class Main extends React.Component {
           <Route path="/home" render={this.getHome} />
           <Route path="/general" render={this.getGeneral} />
           <Route path="/whatsnew" render={this.getWhatsNew} /> 
-          <Route path="/devicetype" component={DeviceType} />  {/*TODO: To Masa, fix this */}
+          <Route path="/devicetype" component={this.getDeviceType} />
+          <Route path="/education" component={this.getEducation} />
+          <Route path="/ethnicity" component={this.getEthnicity} />
+          <Route path="/gender" component={this.getGender} />
+          <Route path="/householdincome" component={this.getHouseholdIncome} />
+          <Route path="/likelybuy" component={this.getLikelyBuy} />
+          <Route path="/likelyrecommend" component={this.getLikelyRecommend} />
+          <Route path="/overallsatis" component={this.getOverallSatis} />
+          <Route path="/purchaseamount" component={this.getPurchaseAmount} />
+
+
           <Route render={this.getRoot} />
         </Switch>
       </div>
