@@ -52,6 +52,16 @@ export class DeviceType extends React.Component {
     }
 
     render() {
+        var minOption = "";
+        if (this.state.data != undefined) {
+            var min = 100000000;
+            for (var i in this.state.data) {
+                if (this.state.data[i].result < min) {
+                    min = this.state.data[i].result;
+                    minOption = this.state.data[i].device_type;
+                }
+            }
+        }
       return (
           this.state.isBigScreen?
           <div>
@@ -72,13 +82,11 @@ export class DeviceType extends React.Component {
                     <XAxis dataKey="device_type">
                     <Label className="label" value="Average overall satisfaction by device type" offset={0} position="insideBottom" />
                     </XAxis>
-                    <YAxis />
+                    <YAxis domain={[8, 10]}/>
                     <Tooltip />
                     <Bar dataKey="result" fill="#8884d8" />
                 </BarChart>
-                <Assistant
-                text={"Users are least satisfied when using an iPad."}
-                /> 
+                <Assistant text={"Users are least satisfied when using "+minOption+"."} /> 
                 </div>
             }
         </div>
@@ -101,12 +109,12 @@ export class DeviceType extends React.Component {
                     <XAxis dataKey="device_type">
                     <Label className="label" value="Average overall satisfaction by device type" offset={0} position="insideBottom" />
                     </XAxis>
-                    <YAxis />
+                    <YAxis domain={[8, 10]}/>
                     <Tooltip />
                     <Bar dataKey="result" fill="#8884d8" />
                 </BarChart>
                 <Assistant
-                text={"Users are least satisfied when using an iPad."}
+                text={"Users are least satisfied when using "+minOption+"."}
                 /> 
                 </div>
             }

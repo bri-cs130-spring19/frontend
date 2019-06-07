@@ -5,6 +5,7 @@ import {
 } from 'recharts';
 import axios from 'axios';
 import { BACKEND_API, ETHNICITY, ETHNICITY_SHORT } from '../res/Constants';
+import { Assistant } from "../components/Assistant";
 
 
 //TODO: Unique ethnicity is not fully determined yet. Relevant constants are stored in src/res/Constants.js
@@ -37,12 +38,23 @@ export class Ethnicity extends React.Component {
     }
 
     render() {
+    var minOption = "";
+    if (this.state.data != undefined) {
+        var min = 100000000;
+        for (var i in this.state.data) {
+            if (this.state.data[i].result < min) {
+                min = this.state.data[i].result;
+                minOption = this.state.data[i].ethnicity;
+            }
+        }
+    }
       return (
           <div>
             {
                 this.state.data === undefined || this.state.data.length === 0
                     ? <p>Loading</p>
                     :
+                    <div>
                     <BarChart
                     width={1200}
                     height={500}
@@ -55,10 +67,12 @@ export class Ethnicity extends React.Component {
                     <XAxis dataKey="ethnicity">
                     <Label className="label" value="Average overall satisfaction by ethnicities" offset={0} position="insideBottom" />
                     </XAxis>
-                    <YAxis />
+                    <YAxis domain={[8, 10]}/>
                     <Tooltip />
                     <Bar dataKey="result" fill="#8884d8" />
                 </BarChart>
+                <Assistant text={"Users are least satisfied if ethnicity "+minOption+"."} />
+                </div>
             }
         </div>
       );

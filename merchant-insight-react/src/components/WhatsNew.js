@@ -32,33 +32,33 @@ const fakeSatisfactionTrend = [
   const data = [
     {
       "subject": "Shipping Experience",
-      "A": 85,
-      "B": 70,
-      "fullMark": 100
+      "A": 8.5,
+      "B": 7,
+      "fullMark": 10
     },
     {
       "subject": "Satisfaction",
-      "A": 98,
-      "B": 90,
-      "fullMark": 100
+      "A": 9.8,
+      "B": 9,
+      "fullMark": 10
     },
     {
       "subject": "Recommend",
-      "A": 86,
-      "B": 60,
-      "fullMark": 100
+      "A": 8.6,
+      "B": 6,
+      "fullMark": 10
     },
     {
       "subject": "Purchase amount",
-      "A": 50,
-      "B": 70,
-      "fullMark": 100
+      "A": 5,
+      "B": 7,
+      "fullMark": 10
     },
     {
-      "subject": "Buy again",
-      "A": 85,
-      "B": 90,
-      "fullMark": 100
+      "subject": "Checkout",
+      "A": 8.5,
+      "B": 9,
+      "fullMark": 10
     }
 
   ]
@@ -216,7 +216,7 @@ export class WhatsNew extends React.Component {
             <PolarGrid />
             <Tooltip />
             <PolarAngleAxis dataKey="subject" />
-            <PolarRadiusAxis angle={30} domain={[0, 100]} />
+            <PolarRadiusAxis angle={30} domain={[0, 10]} />
             <Radar name="Last Week" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
             <Radar name="This Week" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
             <Legend />
@@ -299,7 +299,7 @@ export class WhatsNew extends React.Component {
             <PolarGrid />
             <Tooltip />
             <PolarAngleAxis dataKey="subject" />
-            <PolarRadiusAxis angle={30} domain={[0, 100]} />
+            <PolarRadiusAxis angle={30} domain={[0, 10]} />
             <Radar name="Last Week" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
             <Radar name="This Week" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
             <Legend />
