@@ -323,8 +323,8 @@ export class WhatsNew extends React.Component {
               />
         </Row>
 
-        <Button onclick="ClickYes()" style={{ marginLeft: 60}}>Yes</Button>
-        <Button onclick="ClickNo()" >No</Button>
+        <Button style={{ marginLeft: 60}}>Yes</Button>
+        <Button>No</Button>
         </div>
     );
   }
