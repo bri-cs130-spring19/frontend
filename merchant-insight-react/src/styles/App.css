@@ -28,14 +28,7 @@
     float: left;
 }
 
-.App-header {
 
-}
-
-.App-title {
-
-
-}
 
 .App-dropdown{
     margin-left: auto;
@@ -44,7 +37,7 @@
 }
 
 .mainPage {
-    margin-top: 2vw;
+    margin-top: 0vw;
 }
 
 #components-layout-demo-top-side-2 .logo {
