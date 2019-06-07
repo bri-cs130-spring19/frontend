@@ -104,12 +104,12 @@ export class Sidebar extends React.Component {
     //console.log(this.props)
     var realGenderData = [];
     var realSatisfactionTrend = [
-      { name: "Nov", satisfaction: 9.2, amt: 9.2 },
       { name: "Dec", satisfaction: 9.2, amt: 9.2 },
       { name: "Jan", satisfaction: 9.0, amt: 9.0 },
       { name: "Feb", satisfaction: 8.7, amt: 8.7 },
       { name: "Mar", satisfaction: 8.8, amt: 8.8 },
-      { name: "Apr", satisfaction: 8.5, amt: 8.5 }
+      { name: "Apr", satisfaction: 8.5, amt: 8.5 },
+      { name: "May", satisfaction: 9.1, amt: 9.1 },
     ];
     if (this.props.data != undefined) {
       realGenderData = this.props.data[0].slice(0, 2)
