@@ -16,7 +16,7 @@ import { HouseholdIncome } from "../generalGraphs/HouseholdIncome"
 import { LikelyBuy } from "../generalGraphs/LikelyBuy"
 import { LikeRecommend } from "../generalGraphs/LikeRecommend"
 import { OverallSatis } from "../generalGraphs/OverallSatis"
-import { PerchaseAmount } from "../generalGraphs/PerchaseAmount"
+import { PurchaseAmount } from "../generalGraphs/PurchaseAmount"
 
 
 
@@ -77,7 +77,7 @@ export class Main extends React.Component {
     return this.props.isLoggedIn ? <OverallSatis /> : <Welcome/>;
   }
   getPurchaseAmount = () => {
-    return this.props.isLoggedIn ? <PerchaseAmount /> : <Welcome/>;
+    return this.props.isLoggedIn ? <PurchaseAmount /> : <Welcome/>;
   }
 
 
