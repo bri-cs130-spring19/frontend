@@ -69,9 +69,11 @@ export class GeneralGraph extends React.Component {
     render() {
       return (
         
+
         <div className="generalGraph">
                 <Row type="flex" justify="space-between" align="middle">
                     <Col  xs={12} sm={12} md={12} lg={12} xl={8}>
+
                         <div onClick={this.redirectToDeviceType}>
                             {this.getCard('Device Type')}
                         </div>

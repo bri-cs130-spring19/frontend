@@ -26,11 +26,11 @@ const wrapperStyles = {
 // Note: The coordinates should be E/W, N/S, +/-
 
 const popScale = scaleLinear()
-  .domain([8, 10])
+  .domain([8.4, 9.5])
   .range(["#FF0000", "#0000FF"]);
 
 const popScale2 = scaleLinear()
-  .domain([8, 10])
+  .domain([8.6, 9.6])
   .range(["#CFD8DC", "#607D8B"]);
 
 export class Map extends React.Component {
@@ -186,7 +186,7 @@ export class Map extends React.Component {
                 <Col lg={12} md={12} sm={12} xs={12}>
                   <div className="color-buttons">
                     <Button variant="light" onClick={this.switchToPopulation}>
-                      {"Recommendation likelihood"}
+                      {"Recommendation Likelihood"}
                     </Button>
                     <Button variant="light" onClick={this.switchToRegions}>
                       {"Overall Satisfaction"}
