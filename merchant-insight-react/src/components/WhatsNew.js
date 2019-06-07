@@ -32,33 +32,33 @@ const fakeSatisfactionTrend = [
   const data = [
     {
       "subject": "Shipping Experience",
-      "A": 140,
-      "B": 110,
-      "fullMark": 150
+      "A": 85,
+      "B": 70,
+      "fullMark": 100
     },
     {
       "subject": "Satisfaction",
       "A": 98,
-      "B": 130,
-      "fullMark": 150
+      "B": 90,
+      "fullMark": 100
     },
     {
       "subject": "Recommend",
       "A": 86,
-      "B": 130,
-      "fullMark": 150
+      "B": 60,
+      "fullMark": 100
     },
     {
       "subject": "Purchase amount",
-      "A": 99,
-      "B": 100,
-      "fullMark": 150
+      "A": 50,
+      "B": 70,
+      "fullMark": 100
     },
     {
       "subject": "Buy again",
       "A": 85,
       "B": 90,
-      "fullMark": 150
+      "fullMark": 100
     }
 
   ]
@@ -214,8 +214,9 @@ export class WhatsNew extends React.Component {
        
         <RadarChart outerRadius={90} width={730} height={250} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <PolarGrid />
+            <Tooltip />
             <PolarAngleAxis dataKey="subject" />
-            <PolarRadiusAxis angle={30} domain={[0, 150]} />
+            <PolarRadiusAxis angle={30} domain={[0, 100]} />
             <Radar name="Last Week" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
             <Radar name="This Week" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
             <Legend />
@@ -296,8 +297,9 @@ export class WhatsNew extends React.Component {
        
         <RadarChart outerRadius={90} width={350} height={250} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <PolarGrid />
+            <Tooltip />
             <PolarAngleAxis dataKey="subject" />
-            <PolarRadiusAxis angle={30} domain={[0, 150]} />
+            <PolarRadiusAxis angle={30} domain={[0, 100]} />
             <Radar name="Last Week" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
             <Radar name="This Week" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
             <Legend />

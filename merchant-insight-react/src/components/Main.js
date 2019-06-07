@@ -29,7 +29,7 @@ export class Main extends React.Component {
   }
 
   getHome = () => {
-      return this.props.isLoggedIn ? <Dashboard /> : <Welcome/>;
+      return this.props.isLoggedIn ? <WhatsNew /> : <Welcome/>;
   }
 
   getLogin = () => {
@@ -50,6 +50,9 @@ export class Main extends React.Component {
 
   getWhatsNew = () => {
     return this.props.isLoggedIn ? <WhatsNew /> : <Welcome/>;
+  }
+  getDashboard = () => {
+    return this.props.isLoggedIn ? <Dashboard /> : <Welcome/>;
   }
 
   getDeviceType = () => {
@@ -101,7 +104,7 @@ export class Main extends React.Component {
           <Route path="/likelyrecommend" component={this.getLikelyRecommend} />
           <Route path="/overallsatis" component={this.getOverallSatis} />
           <Route path="/purchaseamount" component={this.getPurchaseAmount} />
-
+          <Route path="/dashboard" component={this.getDashboard} />
 
           <Route render={this.getRoot} />
         </Switch>
