@@ -1,4 +1,6 @@
-.GeneralGraph {
-    position: relative;
-    padding-top: 100px
+.generalGraph {
+    width: 100%;
+}
+.graph-tile{
+    margin-top: 10px;
 }

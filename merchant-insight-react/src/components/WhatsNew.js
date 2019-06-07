@@ -172,8 +172,8 @@ export class WhatsNew extends React.Component {
               />
         </Row>
 
-        <Button onclick="clickYes()" style={{ marginLeft: 60}}>Yes</Button>
-        <Button onclick="clickNo()" >No</Button>
+        <Button style={{ marginLeft: 60}}>Yes</Button>
+        <Button>No</Button>
 
 
     </div>;

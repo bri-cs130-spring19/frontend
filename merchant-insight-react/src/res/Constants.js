@@ -141,7 +141,7 @@ export const EDUCATION = [
     'Less than high school',
     'High school graduate',
     'Some college',
-    'Bachelor\'s degree',
+    "Bachelor\'s degree",
     'Graduate degree',
     
 ];

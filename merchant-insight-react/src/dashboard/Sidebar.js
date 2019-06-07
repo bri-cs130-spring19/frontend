@@ -65,7 +65,6 @@ export class Sidebar extends React.Component {
     constructor() {
         super();
         this.state = {
-            isSatiafaction: false,
             data: undefined,
         };
     }

@@ -16,6 +16,7 @@ export class Dashboard extends React.Component {
 
   handleOnClick = data => {
     this.setState({ curState: data });
+
   };
 
   render() {
