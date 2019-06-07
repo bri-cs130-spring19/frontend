@@ -43,7 +43,7 @@ export class DeviceType extends React.Component {
                     ? <p>Loading</p>
                     :
                     <BarChart
-                    width={1200}
+                    width={1000}
                     height={500}
                     data={this.state.data}
                     margin={{

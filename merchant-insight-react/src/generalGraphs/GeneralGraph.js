@@ -16,11 +16,10 @@ export class GeneralGraph extends React.Component {
     getCard = (category) => {
         return (
             <Card
-                hoverable
-                            
+                hoverable        
                 cover={<img alt="example" src={barImg} />}
             >
-                <Meta title={category}/>
+                <Meta title={category} fontSize={10}  />
             </Card>
         );
     };
@@ -62,7 +61,7 @@ export class GeneralGraph extends React.Component {
       return (
         
         <div>
-            <div style={{ background: '#ECECEC', padding: '30px' }}>
+            <div style={{ padding: '30px' }}>
                 <Row gutter={16}>
                     <Col span={8}>
                         <div onClick={this.redirectToDeviceType}>
@@ -82,7 +81,7 @@ export class GeneralGraph extends React.Component {
                     </Col>
                 </Row>
             </div>
-            <div style={{ background: '#ECECEC', padding: '30px' }}>
+            <div style={{ padding: '30px' }}>
                 <Row gutter={16}>
                     <Col span={8}>
                         <div onClick={this.redirectToGender}>
@@ -102,7 +101,7 @@ export class GeneralGraph extends React.Component {
                     </Col>
                 </Row>
             </div>
-            <div style={{ background: '#ECECEC', padding: '30px' }}>
+            <div style={{ padding: '30px' }}>
                 <Row gutter={16}>
                     <Col span={8}>
                         <div onClick={this.redirectToLikelyBuy}>
