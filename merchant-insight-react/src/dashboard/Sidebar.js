@@ -131,7 +131,7 @@ export class Sidebar extends React.Component {
           return(
               <div>
                   <Assistant
-                      text={"Your statistics for " + this.props.curState.id + " is here."}
+                      text={"Your statistics for " + this.props.curState.id + " are here."}
                   />
                   <Assistant
                       text={

@@ -186,7 +186,7 @@ export class Map extends React.Component {
                 <Col lg={12} md={12} sm={12} xs={12}>
                   <div className="color-buttons">
                     <Button variant="light" onClick={this.switchToPopulation}>
-                      {"Recommendation likelihood"}
+                      {"Recommendation Likelihood"}
                     </Button>
                     <Button variant="light" onClick={this.switchToRegions}>
                       {"Overall Satisfaction"}
