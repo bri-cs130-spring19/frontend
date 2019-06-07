@@ -24,12 +24,12 @@ const fakeGenderData = [
 ];
 
 const fakeSatisfactionTrend = [
-  { name: "Jan", satisfaction: 9.2, amt: 9.2 },
-  { name: "Feb", satisfaction: 9.2, amt: 9.2 },
-  { name: "Mar", satisfaction: 9.0, amt: 9.0 },
-  { name: "Apr", satisfaction: 8.7, amt: 8.7 },
-  { name: "May", satisfaction: 8.8, amt: 8.8 },
-  { name: "June", satisfaction: 8.5, amt: 8.5 }
+  { name: "Nov", satisfaction: 9.2, amt: 9.2 },
+  { name: "Dec", satisfaction: 9.2, amt: 9.2 },
+  { name: "Jan", satisfaction: 9.0, amt: 9.0 },
+  { name: "Feb", satisfaction: 8.7, amt: 8.7 },
+  { name: "Mar", satisfaction: 8.8, amt: 8.8 },
+  { name: "Apr", satisfaction: 8.5, amt: 8.5 }
 ];
 
 const COLORS = ["#0088FE", "#FF8042"];
@@ -65,33 +65,35 @@ export class Sidebar extends React.Component {
     constructor() {
         super();
         this.state = {
-            isSatiafaction: false,
+            isSatisfaction: false,
             data: undefined,
         };
     }
 
     componentDidMount() {
-        const urls = US_STATES_STATE_CODES.map( e => BACKEND_API+'/data/states/'+e);
-        const promises = urls.map( url => axios.get(url));
-        let result = [];
-        axios.all(promises)
-            .then((responses) => {
-                for (let i = 0; i < US_STATES.length; i++) {
-                    var female = {};
-                    var male = {};
-                    female.name = "female";
-                    male.name = "male";
-                    female.value = responses[i].data.numberFemales;
-                    male.value = responses[i].data.numberMales;
-                    result.push([female, male]);
+        // const urls = [US_STATES_STATE_CODES[US_STATES.indexOf(this.props.curState.id)]].map( e => BACKEND_API+'/data/states/'+e+'?startMonth=11&startYear=2018&endMonth=4&endYear=2019');
+        // const promises = urls.map( url => axios.get(url));
+        // let result = [];
+        // axios.all(promises)
+        //     .then((responses) => {
+        //         for (let i = 0; i < 1; i++) {
+        //             var female = {};
+        //             var male = {};
+        //             var months = [];
+        //             female.name = "female";
+        //             male.name = "male";
+        //             female.value = responses[i].data.numberFemales;
+        //             male.value = responses[i].data.numberMales;
+        //             months = responses[i].data.averageOverallSatisfactionByMonth;
+        //             result.push([female, male, months]);
 
-                }
-                this.setState({data: result});
+        //         }
+        //         this.setState({data: result});
 
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+        //     })
+        //     .catch((error) => {
+        //         console.log(error)
+        //     })
     }
 
   static propTypes = {
@@ -99,8 +101,25 @@ export class Sidebar extends React.Component {
   };
 
   render() {
-
-      if (this.state.data === undefined || this.state.data.length === 0) {
+    //console.log(this.props)
+    var realGenderData = [];
+    var realSatisfactionTrend = [
+      { name: "Nov", satisfaction: 9.2, amt: 9.2 },
+      { name: "Dec", satisfaction: 9.2, amt: 9.2 },
+      { name: "Jan", satisfaction: 9.0, amt: 9.0 },
+      { name: "Feb", satisfaction: 8.7, amt: 8.7 },
+      { name: "Mar", satisfaction: 8.8, amt: 8.8 },
+      { name: "Apr", satisfaction: 8.5, amt: 8.5 }
+    ];
+    if (this.props.data != undefined) {
+      realGenderData = this.props.data[0].slice(0, 2)
+      //console.log(realGenderData)
+      for (var i in this.props.data[0][2]) {
+        realSatisfactionTrend[i].satisfaction = this.props.data[0][2][i];
+        realSatisfactionTrend[i].amt = this.props.data[0][2][i];
+      }
+    }
+      if (this.props.data === undefined || this.props.data.length === 0) {
                 return ( <div>
                     <Row className="loading">
                         <Col lg={12} md={12} sm={12} xs={12}>
@@ -124,7 +143,7 @@ export class Sidebar extends React.Component {
                   <LineChart
                       width={300}
                       height={200}
-                      data={fakeSatisfactionTrend}
+                      data={realSatisfactionTrend}
                       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                   >
                       <XAxis dataKey="name" />
@@ -142,7 +161,7 @@ export class Sidebar extends React.Component {
                   <Assistant text={"The gender distribution is :"} />
                   <PieChart width={300} height={200}>
                       <Pie
-                          data={this.state.data[US_STATES.indexOf(this.props.curState.id)]}
+                          data={realGenderData}
                           cx={150}
                           cy={100}
                           labelLine={false}
@@ -151,7 +170,7 @@ export class Sidebar extends React.Component {
                           fill="#8884d8"
                           dataKey="value"
                       >
-                          {fakeGenderData.map((entry, index) => (
+                          {realGenderData.map((entry, index) => (
                               <Cell
                                   key={`cell-${index}`}
                                   fill={COLORS[index % COLORS.length]}
