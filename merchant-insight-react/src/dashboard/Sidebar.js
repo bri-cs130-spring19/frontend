@@ -147,7 +147,7 @@ export class Sidebar extends React.Component {
                       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                   >
                       <XAxis dataKey="name" />
-                      <YAxis />
+                      <YAxis domain={[8, 10]} />
                       <CartesianGrid strokeDasharray="3 3" />
                       <Tooltip />
                       <Legend />
