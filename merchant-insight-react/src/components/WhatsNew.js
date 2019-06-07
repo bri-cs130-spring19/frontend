@@ -18,8 +18,8 @@ import {
     PolarRadiusAxis,
     PolarGrid
   } from "recharts";
-
-
+import {BACKEND_API, US_STATES, US_STATES_STATE_CODES} from "../res/Constants";
+import axios from "axios";
 
 const fakeSatisfactionTrend = [
     { name: "Sun", satisfaction: 75},
@@ -65,17 +65,12 @@ const fakeSatisfactionTrend = [
 
   const Comment1 = ({ children }) => (
     <Comment
-      author={<a>Peter John</a>}
+      author={<a>jfzzcakqsmuw@yahoo.com</a>}
       avatar={<Avatar shape="square" size="large" icon="user" />}
       style={{ paddingLeft: 60}}
       content={
         <p>
-          Wow. I had the worst shipping experience ever. I paid for 3 day shipping, 
-          and my package kept getting delayed so many times. After 3 days, I didn't
-          even need the package anymore, but I couldn't cancel the order! So now I can't
-          get my money back until I receive the package. It's been 2 weeks, and I talked 
-          to 3 representatives. NEVER ORDERING ANYTHING AGAIN.
-
+        It was just bloody awful. The prices were not correct and in the end you charged me for shipping even though you say that over $&( it's free. 
         </p>
       }
     >
@@ -85,13 +80,12 @@ const fakeSatisfactionTrend = [
 
   const Comment2 = ({ children }) => (
     <Comment
-      author={<a>Anna J. K.</a>}
+      author={<a>ncvwoxkrbnie@aol.com</a>}
       avatar={<Avatar shape="square" size="large" icon="user" />}
       style={{ paddingLeft: 60}}
       content={
         <p>
-          I wish they would put more photos of different kind of models on the website. 
-          So tired of the same model. #Diversity !!!
+        Wasn’t very pleased with the check out. Options on way of paying are limited.
         </p>
       }
     >
@@ -99,7 +93,20 @@ const fakeSatisfactionTrend = [
     </Comment>
   );
 
-
+  const Comment3 = ({ children }) => (
+    <Comment
+      author={<a>jfzzcakqsmuw@yahoo.com</a>}
+      avatar={<Avatar shape="square" size="large" icon="user" />}
+      style={{ paddingLeft: 60}}
+      content={
+        <p>
+        Discount code did not apply to all items. Site was made very poorly. Fire your web developers
+        </p>
+      }
+    >
+      {children}
+    </Comment>
+  );
 
 
 export class WhatsNew extends React.Component {
@@ -110,12 +117,29 @@ export class WhatsNew extends React.Component {
         isBigScreen: true,
         visible: false,
         top: 12,
+        data: undefined
     }
 }
 
   componentDidMount() {
     this.siderOrDrawer();
     window.addEventListener("resize", this.siderOrDrawer.bind(this));
+
+        const urls = ["test"].map( e => BACKEND_API+'/data/states?startMonth=12&startYear=2018&endMonth=5&endYear=2019');
+        const promises = urls.map( url => axios.get(url));
+        let result = [];
+        axios.all(promises)
+            .then((responses) => {
+                for (let i = 0; i < 1; i++) {
+                    var months = responses[i].data.averageOverallSatisfactionByMonth;
+
+                }
+                this.setState({data: months});
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
   }
 
     siderOrDrawer() {
@@ -127,6 +151,26 @@ export class WhatsNew extends React.Component {
   }
 
   render() {
+    var realSatisfactionTrend = [
+      { name: "Dec", satisfaction: 9.2, amt: 9.2 },
+      { name: "Jan", satisfaction: 9.0, amt: 9.0 },
+      { name: "Feb", satisfaction: 8.7, amt: 8.7 },
+      { name: "Mar", satisfaction: 8.8, amt: 8.8 },
+      { name: "Apr", satisfaction: 8.5, amt: 8.5 },
+      { name: "May", satisfaction: 9.1, amt: 9.1 }
+    ];
+    if (this.state.data != undefined) {
+      for (var i in this.state.data) {
+        realSatisfactionTrend[i].satisfaction = this.state.data[i];
+        realSatisfactionTrend[i].amt = this.state.data[i];
+      }
+    }
+    if (this.state.data === undefined) {
+      return ( <div>
+          <Row className="loading">
+          </Row>
+      </div>)
+    } else {
     return (
       this.state.isBigScreen ?
         <div className="WhatsNew">
@@ -138,14 +182,14 @@ export class WhatsNew extends React.Component {
 
         <Row className="Ling-Ling" >
               <Assistant
-                text={"The overall satisfaction for the last 5 days is here."}
+                text={"The overall satisfaction for the last 6 months is here."}
               />
         </Row>
 
         <LineChart
           width={300}
           height={200}
-          data={fakeSatisfactionTrend}
+          data={realSatisfactionTrend}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <XAxis dataKey="name" />
@@ -189,6 +233,8 @@ export class WhatsNew extends React.Component {
         </Comment1>
         <Comment2>
         </Comment2>
+        <Comment3>
+        </Comment3>
            
 
         <Row className="Ling-Ling" >
@@ -281,7 +327,7 @@ export class WhatsNew extends React.Component {
         <Button onclick="ClickNo()" >No</Button>
         </div>
     );
-
+  }
 
 
   }
