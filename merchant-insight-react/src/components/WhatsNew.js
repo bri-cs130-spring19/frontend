@@ -73,9 +73,9 @@ const fakeSatisfactionTrend = [
       style={{ paddingLeft: 60}}
       content={
         <p>
-          Wow. I have the worst shipping experience ever. I paid for 3 day shipping, 
-          and my package kept getting delayed so many times. After 3 days, I didn't 
-          even need the package anymore, but I can't cancel the order! So now I can't
+          Wow. I had the worst shipping experience ever. I paid for 3 day shipping, 
+          and my package kept getting delayed so many times. After 3 days, I didn't
+          even need the package anymore, but I couldn't cancel the order! So now I can't
           get my money back until I receive the package. It's been 2 weeks, and I talked 
           to 3 representatives. NEVER ORDERING ANYTHING AGAIN.
 
