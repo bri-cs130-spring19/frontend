@@ -1,6 +1,7 @@
 import React from "react";
 import { Comment, Avatar } from "antd";
 import propTypes from "prop-types";
+import '../styles/Assisstant.css'
 
 export class Assistant extends React.Component {
   static propTypes = {
