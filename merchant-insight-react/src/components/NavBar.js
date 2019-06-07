@@ -3,7 +3,7 @@ import {Layout, Menu, Drawer, Icon, Button, Affix} from 'antd';
 import '../styles/NavBar.css'
 import PropTypes from "prop-types"
 
-const { Sider } = Layout;
+const {Sider} = Layout;
 
 const Item = Menu.Item;
 
@@ -19,25 +19,25 @@ export class NavBar extends React.Component {
     }
 
     static propTypes = {
-        isLoggedIn : PropTypes.bool.isRequired,
+        isLoggedIn: PropTypes.bool.isRequired,
         handleLogOut: PropTypes.func.isRequired,
-    }
+    };
 
 
     redirectToDashBoard = () => {
-        this.props.history.push('/dashboard')
+        this.props.history.push('/dashboard');
         this.forceUpdate()
-    }
+    };
     redirectToGeneral = () => {
-        this.props.history.push('/general')
+        this.props.history.push('/general');
         this.forceUpdate()
-    }
+    };
 
     redirectToWhatsNew = () => {
-        this.props.history.push('/whatsnew')
+        this.props.history.push('/whatsnew');
         this.forceUpdate()
 
-    }
+    };
 
     componentDidMount() {
         this.siderOrDrawer();
@@ -46,7 +46,7 @@ export class NavBar extends React.Component {
 
     onCollapse = collapsed => {
         console.log(collapsed);
-        this.setState({ collapsed });
+        this.setState({collapsed});
     };
 
     siderOrDrawer() {
@@ -56,17 +56,17 @@ export class NavBar extends React.Component {
             this.setState({isBigScreen: true});
         }
     }
-    
+
     showDrawer = () => {
         if (this.state.visible) {
-            this.setState({ visible: false})
+            this.setState({visible: false});
         }
-        this.setState({ visible: true})
-    }
-    
+        this.setState({visible: true});
+    };
+
     onClose = () => {
-        this.setState({ visible: false })
-    }
+        this.setState({visible: false});
+    };
 
 
     componentWillUnmount() {
@@ -76,28 +76,28 @@ export class NavBar extends React.Component {
     render() {
         return (
             this.state.isBigScreen ?
-                    <Sider collapsible={true} collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-                        <div className="logo"/>
-                        <Menu theme="dark" mode="inline">
-                            <Item key="1" onClick={this.redirectToWhatsNew}>
-                                <Icon type="pie-chart"/>
-                                <span>What's New</span>
-                            </Item>
-                            <Item key="2" onClick={this.redirectToDashBoard}>
-                                <Icon type="desktop"/>
-                                <span>Geo Dashboard</span>
-                            </Item>
-                            <Item key="3" onClick={this.redirectToGeneral}>
-                                <Icon type="desktop"/>
-                                <span>General graph</span>
-                            </Item>
-                        </Menu>
-                    </Sider>
+                <Sider collapsible={true} collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+                    <div className="logo"/>
+                    <Menu theme="dark" mode="inline">
+                        <Item key="1" onClick={this.redirectToWhatsNew}>
+                            <Icon type="pie-chart"/>
+                            <span>What's New</span>
+                        </Item>
+                        <Item key="2" onClick={this.redirectToDashBoard}>
+                            <Icon type="pie-chart"/>
+                            <span>Geo Dashboard</span>
+                        </Item>
+                        <Item key="3" onClick={this.redirectToGeneral}>
+                            <Icon type="pie-chart"/>
+                            <span>General graph</span>
+                        </Item>
+                    </Menu>
+                </Sider>
                 :
                 <div>
-                    <Affix offsetTop={120}  style={{ width: 0}}>
-                        <Button onClick={this.showDrawer} style={{ marginBottom: 16 }}>
-                            <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
+                    <Affix offsetTop={120} style={{width: 0}}>
+                        <Button onClick={this.showDrawer} style={{marginBottom: 16}}>
+                            <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}/>
                         </Button>
                     </Affix>
                     <Drawer title="Menu" placement="left" closable={false}
@@ -118,7 +118,6 @@ export class NavBar extends React.Component {
                         </Menu>
                     </Drawer>
                 </div>
-
 
 
         );

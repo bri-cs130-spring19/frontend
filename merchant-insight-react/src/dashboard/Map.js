@@ -9,10 +9,12 @@ import chroma from "chroma-js";
 import { scaleLinear } from "d3-scale";
 import geoData from "../res/us7.json";
 import "../styles/Map.css";
+import { Spin } from 'antd';
 import { Button, Row, Col } from "react-bootstrap";
 import ReactTooltip from "react-tooltip";
-import { US_STATES } from "../res/Constants";
+import {BACKEND_API, US_STATES, US_STATES_STATE_CODES} from "../res/Constants";
 import PropTypes from 'prop-types'
+import axios from "axios";
 
 const wrapperStyles = {
   width: "100%",
@@ -21,82 +23,28 @@ const wrapperStyles = {
   maxHeight: 600
 };
 
-
-const age = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20,
-  21,
-  22,
-  23,
-  24,
-  25,
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20,
-  21,
-  22,
-  23,
-  24,
-  25,
-  26
-];
-
 // Note: The coordinates should be E/W, N/S, +/-
 
 const popScale = scaleLinear()
-  .domain([1, 26])
+  .domain([8, 10])
   .range(["#FF0000", "#0000FF"]);
 
 const popScale2 = scaleLinear()
-  .domain([1, 26])
+  .domain([8, 10])
   .range(["#CFD8DC", "#607D8B"]);
 
 export class Map extends React.Component {
   static propTypes = {
     handleOnClick: PropTypes.func.isRequired
-  }
+  };
 
   constructor() {
     super();
     this.state = {
       center: [0, 20],
       zoom: 1,
-      fakeData: false
+      isSatiafaction: false,
+      data: undefined,
     };
     this.switchToPopulation = this.switchToPopulation.bind(this);
     this.switchToRegions = this.switchToRegions.bind(this);
@@ -106,6 +54,23 @@ export class Map extends React.Component {
     setTimeout(() => {
       ReactTooltip.rebuild();
     }, 100);
+
+    const urls = US_STATES_STATE_CODES.map( e => BACKEND_API+'/data/states/'+e);
+    const promises = urls.map( url => axios.get(url));
+    let result = [];
+    axios.all(promises)
+        .then((responses) => {
+          for (let i = 0; i < US_STATES.length; i++) {
+            result.push({
+              recommend: responses[i].data.averageLikelihoodToRecommend,
+              satisfaction: responses[i].data.averageOverallSatisfaction,
+            })
+          }
+          this.setState({data: result});
+        })
+        .catch((error) => {
+          console.log(error)
+        })
   }
 
   handleUserClick = (data) => {
@@ -113,113 +78,126 @@ export class Map extends React.Component {
   };
 
   switchToPopulation() {
-    this.setState({ fakeData: true });
+    this.setState({ isSatisfaction: true });
   }
 
   switchToRegions() {
-    this.setState({ fakeData: false });
+    this.setState({ isSatisfaction: false });
   }
 
   render() {
+    const field = this.state.isSatisfaction ? "satisfaction" : "recommend";
     return (
       <div>
-        <Row className="map-buttons">
-          <Col lg={12} md={12} sm={12} xs={12}>
-            <div style={wrapperStyles}>
-              <ComposableMap
-                projectionConfig={{ scale: 900 }}
-                width={1000}
-                height={600}
-                style={{
-                  width: "100%",
-                  height: "auto"
-                }}
-              >
-                <ZoomableGroup center={[-100, 40]} disablePanning>
-                  <Geographies geography={geoData} disableOptimization>
-                    {(geographies, projection) =>
-                      geographies.map(
-                        (geography, i) =>
-                          US_STATES.indexOf(geography.id) !== -1 && (
-                            <Geography
-                              key={i}
-                              geography={geography}
-                              data-tip={
-                                geography.id +
-                                ": " +
-                                age[US_STATES.indexOf(geography.id)]
-                              }
-                              projection={projection}
-                              style={{
-                                default: {
-                                  fill: this.state.fakeData
-                                    ? popScale(
-                                        age[US_STATES.indexOf(geography.id)]
-                                      )
-                                    : popScale2(
-                                        age[US_STATES.indexOf(geography.id)]
-                                      ),
-                                  stroke: "#607D8B",
-                                  strokeWidth: 0.75,
-                                  outline: "none"
-                                },
-                                hover: {
-                                  fill: this.state.fakeData
-                                    ? chroma(
-                                        popScale(
-                                          age[US_STATES.indexOf(geography.id)]
-                                        )
-                                      ).darken(0.5)
-                                    : chroma(
-                                        popScale2(
-                                          age[US_STATES.indexOf(geography.id)]
-                                        )
-                                      ).darken(0.5),
-                                  stroke: "#607D8B",
-                                  strokeWidth: 0.75,
-                                  outline: "none"
-                                },
-                                pressed: {
-                                  fill: this.state.fakeData
-                                    ? chroma(
-                                        popScale(
-                                          age[US_STATES.indexOf(geography.id)]
-                                        )
-                                      ).brighten(0.5)
-                                    : chroma(
-                                        popScale2(
-                                          age[US_STATES.indexOf(geography.id)]
-                                        )
-                                      ).brighten(0.5),
-                                  stroke: "#607D8B",
-                                  strokeWidth: 0.75,
-                                  outline: "none"
-                                }
-                              }}
-                              onClick={(geograpny) => this.handleUserClick(geography)}
-                            />
-                          )
-                      )
-                    }
-                  </Geographies>
-                </ZoomableGroup>
-              </ComposableMap>
-              <ReactTooltip />
-            </div>
-          </Col>
+        {
+          this.state.data === undefined || this.state.data.length === 0
+              ?
+              <Row className="loading">
+                <Col lg={12} md={12} sm={12} xs={12}>
+                <Spin />
+                </Col>
+              </Row>
+              :
+              <Row className="map-buttons">
+                <Col lg={12} md={12} sm={12} xs={12}>
+                  <div style={wrapperStyles}>
+                    <ComposableMap
+                        projectionConfig={{ scale: 900 }}
+                        width={1000}
+                        height={600}
+                        style={{
+                          width: "100%",
+                          height: "auto"
+                        }}
+                    >
+                      <ZoomableGroup center={[-100, 40]} disablePanning>
+                        <Geographies geography={geoData} disableOptimization>
+                          {(geographies, projection) =>
+                              geographies.map(
+                                  (geography, i) =>
+                                      US_STATES.indexOf(geography.id) !== -1 && (
+                                          <Geography
+                                              key={i}
+                                              geography={geography}
+                                              data-tip={
+                                                geography.id +
+                                                ": " + this.state.data[US_STATES.indexOf(geography.id)][field]
 
-          <Col lg={12} md={12} sm={12} xs={12}>
-            <div className="color-buttons">
-              <Button variant="light" onClick={this.switchToPopulation}>
-                {"overall satisfaction"}
-              </Button>
-              <Button variant="light" onClick={this.switchToRegions}>
-                {"checkout experience"}
-              </Button>
-            </div>
-          </Col>
-        </Row>
+                                              }
+                                              projection={projection}
+                                              style={{
+                                                default: {
+                                                  fill: this.state.isSatisfaction
+                                                      ? popScale(
+                                                          this.state.data[US_STATES.indexOf(geography.id)][field]
+                                                      )
+                                                      : popScale2(
+                                                          this.state.data[US_STATES.indexOf(geography.id)][field]
+                                                      ),
+                                                  stroke: "#607D8B",
+                                                  strokeWidth: 0.75,
+                                                  outline: "none"
+                                                },
+                                                hover: {
+                                                  fill: this.state.isSatisfaction
+                                                      ? chroma(
+                                                          popScale(
+                                                              this.state.data[US_STATES.indexOf(geography.id)][field]
+                                                          )
+                                                      ).darken(0.5)
+                                                      : chroma(
+                                                          popScale2(
+                                                              this.state.data[US_STATES.indexOf(geography.id)][field]
+                                                          )
+                                                      ).darken(0.5),
+                                                  stroke: "#607D8B",
+                                                  strokeWidth: 0.75,
+                                                  outline: "none"
+                                                },
+                                                pressed: {
+                                                  fill: this.state.isSatisfaction
+                                                      ? chroma(
+                                                          popScale(
+                                                              this.state.data[US_STATES.indexOf(geography.id)][field]
+                                                          )
+                                                      ).brighten(0.5)
+                                                      : chroma(
+                                                          popScale2(
+                                                              this.state.data[US_STATES.indexOf(geography.id)][field]
+                                                          )
+                                                      ).brighten(0.5),
+                                                  stroke: "#607D8B",
+                                                  strokeWidth: 0.75,
+                                                  outline: "none"
+                                                }
+                                              }}
+                                              onClick={(geography) => this.handleUserClick(geography)}
+                                          />
+                                      )
+                              )
+                          }
+                        </Geographies>
+                      </ZoomableGroup>
+                    </ComposableMap>
+                    <ReactTooltip />
+                  </div>
+                </Col>
+
+                <Col lg={12} md={12} sm={12} xs={12}>
+                  <div className="color-buttons">
+                    <Button variant="light" onClick={this.switchToPopulation}>
+                      {"Recommendation likelihood"}
+                    </Button>
+                    <Button variant="light" onClick={this.switchToRegions}>
+                      {"Overall Satisfaction"}
+                    </Button>
+                  </div>
+                </Col>
+              </Row>
+
+         }
       </div>
+
     );
   }
 }
