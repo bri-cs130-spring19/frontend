@@ -47,7 +47,7 @@ return (
 };
   
 
-export class OverallSatis extends React.Component {
+export class PurchaseAmount extends React.Component {
     constructor() {
         super();
         this.state = {
