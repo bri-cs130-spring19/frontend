@@ -22,15 +22,15 @@ export class Dashboard extends React.Component {
     return (
       <div className="dashboard">
         <Row className="test">
-          <Col lg={8} md={10} sm={10} xs={10}>
+          <Col lg={8} md={12} sm={12} xs={12}>
             <Map handleOnClick={this.handleOnClick} className="DashboardMap" />
           </Col>
           {this.state.curState !== undefined ? (
-            <Col className="Ling-Ling" lg={4} md={10} sm={10} xs={10}>
+            <Col className="Ling-Ling" lg={4} md={12} sm={12} xs={12}>
               <Sidebar curState={this.state.curState} />
             </Col>
           ) : (
-            <Col className="Ling-Ling" lg={4} md={10} sm={10} xs={10}>
+            <Col className="Ling-Ling" lg={4} md={12} sm={12} xs={12}>
               <Assistant
                 text={"Click on any state to see more detailed information."}
               />
