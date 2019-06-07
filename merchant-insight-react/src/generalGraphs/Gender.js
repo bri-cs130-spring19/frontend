@@ -190,7 +190,7 @@ export class Gender extends React.Component {
                 </Col>
             </Row>
             <Assistant
-                text={"Female recommend your product at a higher rate than males."}
+                text={"Females recommend your product at a higher rate than males."}
               />
 
         </div>
