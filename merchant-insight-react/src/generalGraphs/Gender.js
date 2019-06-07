@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/GeneralGraph.css'
+import '../styles/Gender.css'
 import {
     ResponsiveContainer, PieChart, Pie, Sector, Cell, Tooltip, Label,
 } from 'recharts';
@@ -9,8 +9,18 @@ import { Row, Col } from "react-bootstrap";
 import { Assistant } from "../components/Assistant";
 
 const fakeGenderData = [
-    { name: "female", value: 600 },
-    { name: "male", value: 412 }
+    { name: "female", value: 0 },
+    { name: "male", value: 4120 }
+  ];
+
+const MaleRecommendData = [
+    { name: "Recommend", value: 2703 },
+    { name: "Not Recommend", value: 1504 }
+  ];
+
+const FemaleRecommendData = [
+    { name: "Recommend", value: 3921 },
+    { name: "Not Recommend", value: 1672 }
   ];
 
 const COLORS = ["#0088FE", "#FF8042"];
@@ -56,19 +66,23 @@ export class Gender extends React.Component {
     }
 
 
-    /*
+    
     componentDidMount() {
         const urls = GENDER.map( e => BACKEND_API+'/data/gender?gender='+e)
         const promises = urls.map( url => axios.get(url))
         let result = []
         axios.all(promises)
             .then((responses) => {
-                for (let i = 0; i < GENDER.length; i++) {
-                    result.push({
-                        gender: GENDER[i],
-                        result: responses[i].data.likelihoodToRecommend,
-                    })
-                }
+                console.log(responses)
+                    
+                var female = {};
+                var male = {};
+                female.name = "Female";
+                male.name = "Male";
+                female.value = responses[0].data.numberFemales;
+                male.value = responses[1].data.numberMales;
+                result.push(female, male);
+
                 this.setState({data: result})
                 console.log(this.state.data)
             })
@@ -77,7 +91,7 @@ export class Gender extends React.Component {
             })
 
     }
-    */
+    
 
     render() {
       return (
@@ -86,14 +100,12 @@ export class Gender extends React.Component {
                 <h1>Gender Survey Data</h1>
             </Row>
             <Row>
-            <Assistant
-                text={"This is the gender ratio of your survey responses."}
-              />
+            
             </Row>
             <Row className="justify-content-md-center">
                 <PieChart width={400} height={200}>
                     <Pie
-                        data={fakeGenderData}
+                        data={this.state.data}
                         cx={200}
                         cy={100}
                         labelLine={false}
@@ -101,6 +113,7 @@ export class Gender extends React.Component {
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="value"
+                        nameKey="name"
                     >
                     {fakeGenderData.map((entry, index) => (
                         <Cell
@@ -111,17 +124,17 @@ export class Gender extends React.Component {
                     </Pie>
                     <Tooltip />
                 </PieChart>
-            </Row>                
-            <Row>
+            </Row> 
             <Assistant
-                text={"This is the likelihood for each gender to recommend your product."}
-              />
+                text={"More females take your surveys than males."}
+              />               
+            <Row>
             </Row>
             <Row className="justify-content-md-center">
                 <Col lg={4} md={12} sm={12} xs={12}>
                     <PieChart width={400} height={200}>
                         <Pie
-                            data={fakeGenderData}
+                            data={MaleRecommendData}
                             cx={125}
                             cy={100}
                             labelLine={false}
@@ -130,7 +143,7 @@ export class Gender extends React.Component {
                             fill="#8884d8"
                             dataKey="value"
                         >
-                        {fakeGenderData.map((entry, index) => (
+                        {MaleRecommendData.map((entry, index) => (
                             <Cell
                             key={`cell-${index}`}
                             fill={MALE_COLORS[index % MALE_COLORS.length]}
@@ -144,7 +157,7 @@ export class Gender extends React.Component {
                 <Col lg={4} md={12} sm={12} xs={12}>
                     <PieChart width={400} height={200}>
                         <Pie
-                            data={fakeGenderData}
+                            data={FemaleRecommendData}
                             cx={125}
                             cy={100}
                             labelLine={false}
@@ -165,6 +178,9 @@ export class Gender extends React.Component {
                     <h5>Females</h5>
                 </Col>
             </Row>
+            <Assistant
+                text={"Female recommend your product at a higher rate than males."}
+              />
 
         </div>
         
