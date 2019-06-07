@@ -89,7 +89,7 @@ export class NavBar extends React.Component {
                         </Item>
                         <Item key="3" onClick={this.redirectToGeneral}>
                             <Icon type="pie-chart"/>
-                            <span>General graph</span>
+                            <span>General Graphs</span>
                         </Item>
                     </Menu>
                 </Sider>
@@ -113,7 +113,7 @@ export class NavBar extends React.Component {
                             </Item>
                             <Item key="3" onClick={this.redirectToGeneral}>
                                 <Icon type="desktop"/>
-                                <span>General graph</span>
+                                <span>General Graphs</span>
                             </Item>
                         </Menu>
                     </Drawer>
