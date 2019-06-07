@@ -95,16 +95,16 @@ export class Main extends React.Component {
           <Route path="/home" render={this.getHome} />
           <Route path="/general" render={this.getGeneral} />
           <Route path="/whatsnew" render={this.getWhatsNew} /> 
-          <Route path="/devicetype" component={this.getDeviceType} />
-          <Route path="/education" component={this.getEducation} />
-          <Route path="/ethnicity" component={this.getEthnicity} />
-          <Route path="/gender" component={this.getGender} />
-          <Route path="/householdincome" component={this.getHouseholdIncome} />
-          <Route path="/likelybuy" component={this.getLikelyBuy} />
-          <Route path="/likelyrecommend" component={this.getLikelyRecommend} />
-          <Route path="/overallsatis" component={this.getOverallSatis} />
-          <Route path="/purchaseamount" component={this.getPurchaseAmount} />
-          <Route path="/dashboard" component={this.getDashboard} />
+          <Route path="/devicetype" render={this.getDeviceType} />
+          <Route path="/education" render={this.getEducation} />
+          <Route path="/ethnicity" render={this.getEthnicity} />
+          <Route path="/gender" render={this.getGender} />
+          <Route path="/householdincome" render={this.getHouseholdIncome} />
+          <Route path="/likelybuy" render={this.getLikelyBuy} />
+          <Route path="/likelyrecommend" render={this.getLikelyRecommend} />
+          <Route path="/overallsatis" render={this.getOverallSatis} />
+          <Route path="/purchaseamount" render={this.getPurchaseAmount} />
+          <Route path="/dashboard" render={this.getDashboard} />
 
           <Route render={this.getRoot} />
         </Switch>

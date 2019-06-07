@@ -97,16 +97,16 @@ export class Gender extends React.Component {
       return (
           <div className="gender">
             <Row>
-                <h1>Gender Survey Data</h1>
+                <h2>Gender Survey Data</h2>
             </Row>
             <Row>
             
             </Row>
-            <Row className="justify-content-md-center">
-                <PieChart width={400} height={200}>
+            <Row>
+                <PieChart width={300} height={200}>
                     <Pie
                         data={this.state.data}
-                        cx={200}
+                        cx={150}
                         cy={100}
                         labelLine={false}
                         label={renderCustomizedLabel}
@@ -132,10 +132,10 @@ export class Gender extends React.Component {
             </Row>
             <Row className="justify-content-md-center">
                 <Col lg={4} md={12} sm={12} xs={12}>
-                    <PieChart width={400} height={200}>
+                    <PieChart width={300} height={200}>
                         <Pie
                             data={MaleRecommendData}
-                            cx={125}
+                            cx={150}
                             cy={100}
                             labelLine={false}
                             label={renderCustomizedLabel}
@@ -152,13 +152,13 @@ export class Gender extends React.Component {
                         </Pie>
                         <Tooltip />
                     </PieChart>
-                    <h5>Males</h5>
+                    <p>Males</p>
                 </Col>
                 <Col lg={4} md={12} sm={12} xs={12}>
-                    <PieChart width={400} height={200}>
+                    <PieChart width={300} height={200}>
                         <Pie
                             data={FemaleRecommendData}
-                            cx={125}
+                            cx={150}
                             cy={100}
                             labelLine={false}
                             label={renderCustomizedLabel}
@@ -175,7 +175,7 @@ export class Gender extends React.Component {
                         </Pie>
                         <Tooltip />
                     </PieChart>
-                    <h5>Females</h5>
+                    <p>Females</p>
                 </Col>
             </Row>
             <Assistant
