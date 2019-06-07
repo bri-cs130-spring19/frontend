@@ -31,7 +31,7 @@ const popScale = scaleLinear()
 
 const popScale2 = scaleLinear()
   .domain([8.6, 9.6])
-  .range(["#CFD8DC", "#607D8B"]);
+  .range(["#cadcf9", "#0e65f2"]);
 
 export class Map extends React.Component {
   static propTypes = {
@@ -43,7 +43,7 @@ export class Map extends React.Component {
     this.state = {
       center: [0, 20],
       zoom: 1,
-      isSatiafaction: false,
+      isSatisfaction: false,
       data: undefined,
     };
     this.switchToPopulation = this.switchToPopulation.bind(this);

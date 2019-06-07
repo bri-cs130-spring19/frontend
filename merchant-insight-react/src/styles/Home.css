@@ -2,6 +2,7 @@
     width: 100%;
 }
 .home-first-row {
-    display: flex;
-    justify-content: flex-start;
+}
+.row {
+    margin: 0px;
 }
